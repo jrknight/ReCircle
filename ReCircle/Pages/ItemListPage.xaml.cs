@@ -1,0 +1,222 @@
+﻿using ReCircle.Classes;
+using ReCircle.Classes.http;
+using ReCircle.Classes.http.dto;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
+
+// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+
+namespace ReCircle.Pages
+{
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
+    public sealed partial class ItemListPage : Page
+    {
+        private List<Book> Books = new List<Book>();
+        private List<Author> Authors = new List<Author>();
+        private Book CurrentlyDisplayed;
+
+
+        public ItemListPage()
+        {
+            this.InitializeComponent();
+
+            Init();
+        }
+
+        public async void Init()
+        {
+            try
+            {
+                LoadingIndicator.IsActive = true;
+                await PopulateListOfBooks();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"There was a problem on ititialization: {ex}");
+            }
+            finally
+            {
+                LoadingIndicator.IsActive = false;
+                LoadingIndicator.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            }
+        }
+
+        private async Task PopulateListOfBooks()
+        {
+            /// will fetch and return a list of books based on something similar to http://bit.ly/2iTrk2h
+            /// should also bind list to the list in the page
+            /// query for books that are currently checked out by the user 
+
+            try
+            {
+                await UpdateBooks(null);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"There was a problem populating the list of books: {ex}");
+                //TODO: Notify user of failure
+            }
+
+        }
+
+        private async Task UpdateBooks(string search)
+        {
+            if (search == null)
+            {
+                try
+                {
+                    Books = await BookData.GetBooks();
+                    AvailableBooksList.ItemsSource = Books;
+                    AuthorBooksList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                    if (Books.Count > 0)
+                    {
+                        PopulateBookDetails(Books.ElementAt(0));
+                    }
+                    else
+                    {
+                        List<Book> book = new List<Book>();
+                        book.Add(new Book()
+                        {
+                            Title = "No books here, you should add some!"
+                        });
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Exception Occurred \n\n\n\n{ex}");
+                }
+
+            }
+            else
+            {
+                Books = await BookData.GetBooks();
+                Books = Books.Where(b => b.Title.Contains(search) || b.Author.Name.Contains(search) || b.Summary.Contains(search)).ToList();
+            }
+
+            /*catch(FlurlHttpException ex)
+            {
+                Debug.WriteLine("Fatal Exeption: " + ex);
+            }*/
+
+            AvailableBooksList.ItemsSource = Books;
+        }
+
+        private void AvailableBooksList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+            try
+            {
+                var item = e.ClickedItem;
+
+                Book book = (Book)item;
+
+                CurrentlyDisplayed = book;
+
+                PopulateBookDetails(book);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"There was a problem on displaying the item details: {ex}");
+            }
+
+        }
+
+        private void PopulateBookDetails(Book book) //Populate the details page on the home page
+        {
+            txtTitle.Text = book.Title;
+            //Author author = Authors.Where(a => a.Id == book.AuthorId).FirstOrDefault();
+            txtAuthor.Content = book.Author.Name;
+            txtDescription.Text = book.Summary;
+            string s = "";
+            foreach (var g in book.BookGenres)
+            {
+                s += (g.Genre.Name + ", ");
+            }
+            txtGenre.Text = s;
+            CurrentlyDisplayed = book;
+            AuthorBooksList.Visibility = Visibility.Collapsed;
+            BooksWritten.Visibility = Visibility.Collapsed;
+            RequestBookButton.Visibility = Visibility.Visible;
+        }
+
+        private void PopulateAuthorDetails(Author author)
+        {
+            txtTitle.Text = author.Name;
+
+            AuthorBooksList.ItemsSource = author.BooksWritten.ToList();
+            AuthorBooksList.Visibility = Windows.UI.Xaml.Visibility.Visible;
+            BooksWritten.Visibility = Visibility.Visible;
+            RequestBookButton.Visibility = Visibility.Collapsed;
+        }
+
+        private async void TxtAuthor_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            HyperlinkButton b = (HyperlinkButton)sender;
+            var response = await AuthorData.GetBooksWithAuthor(CurrentlyDisplayed.AuthorId);
+            txtDescription.Text = "";
+            txtAuthor.Content = "";
+            BooksWritten.Visibility = Visibility.Visible;
+
+            Author a = new Author()
+            {
+                Name = b.Content.ToString(),
+                BooksWritten = response
+            };
+            PopulateAuthorDetails(a);
+        }
+
+        private async void SearchBox_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                await UpdateBooks(SearchBox.Text);
+            }
+            else
+            {
+                LightUpdateBooksList(SearchBox.Text);
+            }
+
+
+        }
+
+        private void LightUpdateBooksList(string search)
+        {
+            List<Book> bookList = Books;
+            search = search.ToLower();
+
+            bookList = bookList.Where(b => b.Title.ToLower().Contains(search)
+            || b.Author.Name.ToLower().Contains(search)
+            || b.Summary.ToLower().Contains(search)).ToList();
+
+            AvailableBooksList.ItemsSource = bookList;
+
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var bookRequest = new BookRequestDto()
+            {
+                BookId = CurrentlyDisplayed.Id
+            };
+
+            var response = await BookData.PostNewBookRequest(bookRequest);
+
+        }
+    }
+}
