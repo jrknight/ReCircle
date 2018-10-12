@@ -133,7 +133,7 @@ namespace ReCircle.Pages
                     GenreIds = genreIds
                 };
 
-                var response = await BookData.PostBook(dto);
+                var response = await ItemData.PostBook(dto);
                 Debug.WriteLine($"Response on creation of book: {response}");
             }
             catch (Exception ex)

@@ -12,7 +12,7 @@
         <Button Content="&#xE779;" Height="50" Width="50" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Right" VerticalAlignment="Top" Click="Button_Click"/>
         <StackPanel BorderBrush="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,100">
             <Image x:Name="ImageLogo" Source="Assets/open-book-w-key.png" Width="250"/>
-            <TextBlock x:Name="_txtTitle" Text="LibKey" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="72" FontFamily="Segoe UI" CanDrag="False" Margin="25" />
+            <TextBlock x:Name="_txtTitle" Text="ReCircle" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="72" FontFamily="Segoe UI" CanDrag="False" Margin="25" />
             <TextBox x:Name="usernameTextBox" PlaceholderText="User ID" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24" Width="300" Height="50" Margin="5" Padding="5"/>
             <PasswordBox x:Name="passwordTextBox" PasswordRevealMode="Peek" PlaceholderText="Password"  HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24" Width="300" Height="50" Margin="5" Padding="5"/>
             <TextBlock x:Name="LoginFailed" HorizontalAlignment="Center" Visibility="Collapsed" Text="The Username or Password is incorrect" Foreground="Red" FontFamily="Segoe MDL2 Assets"/>

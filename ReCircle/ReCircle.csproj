@@ -96,21 +96,16 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Authentication.cs" />
-    <Compile Include="Classes\Author.cs" />
-    <Compile Include="Classes\Book.cs" />
-    <Compile Include="Classes\BookGenre.cs" />
-    <Compile Include="Classes\BookRecord.cs" />
-    <Compile Include="Classes\BookRequest.cs" />
-    <Compile Include="Classes\Genre.cs" />
-    <Compile Include="Classes\http\AuthorData.cs" />
     <Compile Include="Classes\http\BaseHttp.cs" />
-    <Compile Include="Classes\http\BookData.cs" />
+    <Compile Include="Classes\http\ItemData.cs" />
     <Compile Include="Classes\http\dto\BookForCreationDto.cs" />
     <Compile Include="Classes\http\dto\BookRecordDto.cs" />
     <Compile Include="Classes\http\dto\BookRequestDto.cs" />
     <Compile Include="Classes\http\dto\UpdateDto.cs" />
     <Compile Include="Classes\http\dto\UserModelDto.cs" />
-    <Compile Include="Classes\http\GenreData.cs" />
+    <Compile Include="Classes\Item.cs" />
+    <Compile Include="Classes\ItemRecord.cs" />
+    <Compile Include="Classes\ItemRequest.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="MainPage.xaml.cs">

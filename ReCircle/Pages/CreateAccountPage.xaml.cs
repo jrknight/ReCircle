@@ -60,42 +60,70 @@ namespace ReCircle.Pages
 
         private async void Submit_Click(object sender, RoutedEventArgs e)
         {
-            if (Password.Password == ConfirmPassword.Password)
+            if (!Password.Password.Equals(""))
             {
-                var x = new UserModelDto()
+                if (!Name.Text.Equals(""))
                 {
-                    Email = Email.Text,
-                    Name = Name.Text,
-                    Password = Password.Password,
-                    RoleClaim = UserType.SelectedItem.ToString(),
-                    UserName = UserId.Text
-                };
-                try
-                {
-                    var response = await Authentication.NewUser(x);
-                    if (response.StatusCode == Windows.Web.Http.HttpStatusCode.Created)
+                    if (UserId.Text.Length >= 5)
                     {
-                        FailedMessage.Visibility = Visibility.Collapsed;
-                        Frame.Navigate(typeof(MainPage), x);
+                        if (/*checks email*/ true)
+                        {
+                            if (Password.Password == ConfirmPassword.Password)
+                            {
+                                var x = new UserModelDto()
+                                {
+                                    Email = Email.Text,
+                                    Name = Name.Text,
+                                    Password = Password.Password,
+                                    UserName = UserId.Text
+                                };
+                                try
+                                {
+                                    var response = await Authentication.NewUser(x);
+                                    if (response.StatusCode == Windows.Web.Http.HttpStatusCode.Created)
+                                    {
+                                        FailedMessage.Visibility = Visibility.Collapsed;
+                                        Frame.Navigate(typeof(MainPage), x);
+                                    }
+                                    else
+                                    {
+                                        FailedMessage.Visibility = Visibility.Visible;
+                                        FailedMessage.Text = $"There was a problem creating the user: {response.ReasonPhrase}";
+                                    }
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    Debug.WriteLine($"An exception occurred on creating a new user: {ex}");
+                                }
+                                return;
+                            }
+                            else
+                            {
+                                PasswordNotSame.Visibility = Visibility.Visible;
+                                BitmapImage bitmap = new BitmapImage();
+                                bitmap.UriSource = new Uri("ms-appx://LibraryApp/Assets/RedX.png");
+                                PasswordMeetsRequirements.Source = bitmap;
+                            }
+                        }
+                        else
+                        {
+                            EmailNotEmail.Visibility = Visibility.Visible;
+                        }
                     }
                     else
                     {
-                        FailedMessage.Visibility = Visibility.Visible;
-                        FailedMessage.Text = $"There was a problem creating the user: {response.ReasonPhrase}";
+                        UsernameNotLongEnough.Visibility = Visibility.Visible;
                     }
-
                 }
-                catch (Exception ex)
+                else
                 {
-                    Debug.WriteLine($"An exception occurred on creating a new user: {ex}");
+                    NameNotFilled.Visibility = Visibility.Visible;
                 }
-                return;
             }
             else
             {
-                BitmapImage bitmap = new BitmapImage();
-                bitmap.UriSource = new Uri("ms-appx://LibraryApp/Assets/RedX.png");
-                PasswordMeetsRequirements.Source = bitmap;
+                PasswordNotLongEnough.Visibility = Visibility.Visible;
             }
         }
     }
