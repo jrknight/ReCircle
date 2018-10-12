@@ -108,12 +108,12 @@ namespace ReCircle.Classes.http
             {
                 response = await client.GetAsync(uri);
 
-                XmlSerializer serializer = new XmlSerializer(typeof(Book));
+                XmlSerializer serializer = new XmlSerializer(typeof(Item));
                 var content = response.Content.ToString();
                 TextReader reader = new StringReader(content);
 
 
-                Book b = (Book) serializer.Deserialize(reader);
+                Item b = (Item) serializer.Deserialize(reader);
                 Debug.WriteLine(b);
             }
             catch(Exception ex)

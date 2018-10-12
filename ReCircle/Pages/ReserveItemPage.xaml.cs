@@ -36,7 +36,7 @@ namespace ReCircle.Pages
 
         private async void Init()
         {
-            Books = await BookData.GetBooks();
+            Books = await ItemData.GetBooks();
             BooksList.ItemsSource = Books;
         }
 
@@ -68,7 +68,7 @@ namespace ReCircle.Pages
 
         private async void ButtonSubmit_Click(object sender, RoutedEventArgs e)
         {
-            var response = await BookData.PostBookCheckOut(
+            var response = await ItemData.PostBookCheckOut(
                 new BookRecordDto()
                 {
                     BookId = BookToSubmit.Id,

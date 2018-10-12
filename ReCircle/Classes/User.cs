@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
 
 namespace ReCircle.Classes
 {
     public class User
     {
-
         public string Name { get; set; }
         public string Id { get; set; }
         public string UserName { get; set; }
@@ -25,6 +21,5 @@ namespace ReCircle.Classes
         public object LockoutEnd { get; set; }
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
-
     }
 }

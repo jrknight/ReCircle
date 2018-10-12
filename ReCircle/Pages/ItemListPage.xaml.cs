@@ -27,9 +27,8 @@ namespace ReCircle.Pages
     /// </summary>
     public sealed partial class ItemListPage : Page
     {
-        private List<Book> Books = new List<Book>();
-        private List<Author> Authors = new List<Author>();
-        private Book CurrentlyDisplayed;
+        private List<Item> Items = new List<Item>();
+        private Item CurrentlyDisplayed;
 
 
         public ItemListPage()
@@ -44,7 +43,7 @@ namespace ReCircle.Pages
             try
             {
                 LoadingIndicator.IsActive = true;
-                await PopulateListOfBooks();
+                await PopulateListOfItems();
             }
             catch (Exception ex)
             {
@@ -57,7 +56,7 @@ namespace ReCircle.Pages
             }
         }
 
-        private async Task PopulateListOfBooks()
+        private async Task PopulateListOfItems()
         {
             /// will fetch and return a list of books based on something similar to http://bit.ly/2iTrk2h
             /// should also bind list to the list in the page
@@ -65,7 +64,7 @@ namespace ReCircle.Pages
 
             try
             {
-                await UpdateBooks(null);
+                await UpdateItems(null);
             }
             catch (Exception ex)
             {
@@ -75,22 +74,22 @@ namespace ReCircle.Pages
 
         }
 
-        private async Task UpdateBooks(string search)
+        private async Task UpdateItems(string search)
         {
             if (search == null)
             {
                 try
                 {
-                    Books = await BookData.GetBooks();
-                    AvailableBooksList.ItemsSource = Books;
+                    Items = await ItemData.GetItems();
+                    AvailableBooksList.ItemsSource = Items;
                     AuthorBooksList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-                    if (Books.Count > 0)
+                    if (Items.Count > 0)
                     {
-                        PopulateBookDetails(Books.ElementAt(0));
+                        PopulateItemDetails(Items.ElementAt(0));
                     }
                     else
                     {
-                        List<Book> book = new List<Book>();
+                        List<Book> book = new List<Item>();
                         book.Add(new Book()
                         {
                             Title = "No books here, you should add some!"
@@ -105,8 +104,8 @@ namespace ReCircle.Pages
             }
             else
             {
-                Books = await BookData.GetBooks();
-                Books = Books.Where(b => b.Title.Contains(search) || b.Author.Name.Contains(search) || b.Summary.Contains(search)).ToList();
+                Items = await ItemData.GetBooks();
+                Items = Items.Where(b => b.Title.Contains(search) || b.Author.Name.Contains(search) || b.Summary.Contains(search)).ToList();
             }
 
             /*catch(FlurlHttpException ex)
@@ -114,7 +113,7 @@ namespace ReCircle.Pages
                 Debug.WriteLine("Fatal Exeption: " + ex);
             }*/
 
-            AvailableBooksList.ItemsSource = Books;
+            AvailableBooksList.ItemsSource = Items;
         }
 
         private void AvailableBooksList_ItemClick(object sender, ItemClickEventArgs e)
@@ -137,7 +136,7 @@ namespace ReCircle.Pages
 
         }
 
-        private void PopulateBookDetails(Book book) //Populate the details page on the home page
+        private void PopulateItemDetails(Item item) //Populate the details page on the home page
         {
             txtTitle.Text = book.Title;
             //Author author = Authors.Where(a => a.Id == book.AuthorId).FirstOrDefault();
@@ -197,7 +196,7 @@ namespace ReCircle.Pages
 
         private void LightUpdateBooksList(string search)
         {
-            List<Book> bookList = Books;
+            List<Book> bookList = Items;
             search = search.ToLower();
 
             bookList = bookList.Where(b => b.Title.ToLower().Contains(search)
@@ -215,7 +214,7 @@ namespace ReCircle.Pages
                 BookId = CurrentlyDisplayed.Id
             };
 
-            var response = await BookData.PostNewBookRequest(bookRequest);
+            var response = await ItemData.PostNewBookRequest(bookRequest);
 
         }
     }

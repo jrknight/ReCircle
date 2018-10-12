@@ -11,8 +11,11 @@
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBox x:Name="Name" PlaceholderText="Full Name" Width="400" Margin="10" />
+            <TextBlock x:Name="NameNotFilled" Visibility="Collapsed">Full Name Must Be Filled.</TextBlock>
             <TextBox x:Name="UserId" PlaceholderText="Username" Margin="10" />
+            <TextBlock x:Name="UsernameNotLongEnough" Visibility="Collapsed">Username Must Be At Least 4 Characters Long.</TextBlock>
             <TextBox x:Name="Email" PlaceholderText="Email" Margin="10" />
+            <TextBlock x:Name="EmailNotEmail" Visibility="Collapsed">Email Must Exist.</TextBlock>
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -23,11 +26,12 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                <PasswordBox x:Name="Password" PlaceholderText="Password" Margin="10" Grid.Column="0" />
+                <PasswordBox x:Name="Password" PlaceholderText="Password" Margin="10" Width="400" Grid.Column="0" />
+                <TextBlock x:Name="PasswordNotLongEnough" Visibility="Collapsed">Password Must Be At Least 8 Characters Long.</TextBlock>
                 <PasswordBox x:Name="ConfirmPassword" PlaceholderText="Confirm Password" Margin="10" Grid.Column="0" Grid.Row="1" />
+                <TextBlock x:Name="PasswordNotSame" Visibility="Collapsed">Passwords Must Be The Same.</TextBlock>
                 <Image Grid.Row="1" Height="25" Grid.Column="1" x:Name="PasswordMeetsRequirements" />
             </Grid>
-            <ComboBox x:Name="UserType" HorizontalAlignment="Center" PlaceholderText="Pick a Type" ItemsSource="{x:Bind userTypes}" Margin="10" SelectionChanged="UserType_SelectionChanged"/>
             <TextBox Visibility="Collapsed" x:Name="IsAdminText" PlaceholderText="Enter an Admin Code" Margin="10"/>
             <TextBlock HorizontalAlignment="Center" Margin="10" Foreground="Red" Visibility="Collapsed" x:Name="FailedMessage" Text=""/>
             <Button x:Name="Submit" Content="Create User" HorizontalAlignment="Center" Click="Submit_Click" />
