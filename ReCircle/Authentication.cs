@@ -64,6 +64,8 @@ namespace ReCircle
 
         public static async Task<HttpResponseMessage> NewUser(UserModelDto model)
         {
+            Configuration.Setup();
+
             var url = $"{Configuration.Instance.BaseURL}/api/auth/newuser";
 
             var filter = new HttpBaseProtocolFilter();
