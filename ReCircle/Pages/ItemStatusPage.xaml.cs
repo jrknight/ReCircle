@@ -26,8 +26,8 @@ namespace ReCircle.Pages
     /// </summary>
     public sealed partial class ItemDetailsPage : Page
     {
-        private List<Item> BookRequests = new List<Item>();
-        private List<Item> BookRecords = new List<Item>();
+        private List<Item> ItemRequests = new List<Item>();
+        private List<Item> ItemRecords = new List<Item>();
         private List<ItemRequest> AllItemRequests = new List<ItemRequest>();
         private List<ItemRecord> AllItemRecords = new List<ItemRecord>();
         private dynamic Selected;
@@ -57,20 +57,20 @@ namespace ReCircle.Pages
             {
                 try
                 {
-                    var content = await ItemData.GetUsersBookRequests();
-                    BookRequests = new List<Book>();
-                    foreach (BookRequest b in content)
+                    var content = await ItemData.GetUsersItemRequests();
+                    ItemRequests = new List<Item>();
+                    foreach (ItemRequest i in content)
                     {
-                        BookRequests.Add(b.Book);
+                        ItemRequests.Add(i.Item);
                     }
-                    var content2 = await ItemData.GetCheckedOutBooks();
-                    BookRecords = new List<Book>();
-                    foreach (BookRecord b in content2)
+                    var content2 = await ItemData.GetCheckedOutItems();
+                    ItemRecords = new List<Item>();
+                    foreach (ItemRecord i in content2)
                     {
-                        BookRecords.Add(b.Book);
+                        ItemRecords.Add(i.Item);
                     }
-                    BookRequestsList.ItemsSource = BookRequests;
-                    CheckedOutBooksList.ItemsSource = BookRecords;
+                    ItemRequestsList.ItemsSource = ItemRequests;
+                    CheckedOutItemsList.ItemsSource = ItemRecords;
                 }
                 catch (Exception ex)
                 {
@@ -87,25 +87,25 @@ namespace ReCircle.Pages
                 try
                 {
                     //TODO: Add method to show all checked out books and the students with them ---- must have an option to printout as well
-                    var content = await ItemData.GetAllBookRequests();
-                    List<Book> books = new List<Book>();
+                    var content = await ItemData.GetAllItemRequests();
+                    List<Item> items = new List<Item>();
                     AllItemRequests = content;
                     StudentCheckedOut.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                    foreach (BookRequest b in AllItemRequests)
+                    foreach (ItemRequest i in AllItemRequests)
                     {
-                        books.Add(b.Book);
+                        items.Add(i.Item);
                     }
-                    BookRequestsList.ItemsSource = books;
+                    ItemRequestsList.ItemsSource = items;
 
                     var contentCheckedOut = await ItemData.GetAllCheckedOutItems();
                     AllItemRecords = contentCheckedOut;
 
-                    List<Book> booksCheckedOut = new List<Book>();
-                    foreach (BookRecord b in AllItemRecords)
+                    List<Item> itemsCheckedOut = new List<Item>();
+                    foreach (ItemRecord i in AllItemRecords)
                     {
-                        booksCheckedOut.Add(b.Book);
+                        itemsCheckedOut.Add(i.Item);
                     }
-                    CheckedOutBooksList.ItemsSource = booksCheckedOut;
+                    CheckedOutItemsList.ItemsSource = itemsCheckedOut;
                 }
                 catch (Exception ex)
                 {
@@ -125,13 +125,13 @@ namespace ReCircle.Pages
             CheckInBook.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             try
             {
-                var item = e.ClickedItem;
+                var Item = e.ClickedItem;
 
-                Book book = (Book)item;
+                Item item = (Item)Item;
 
-                Selected = AllItemRequests.Where(b => b.BookId == book.Id).FirstOrDefault();
+                Selected = AllItemRequests.Where(i => i.ItemId == item.Id).FirstOrDefault();
 
-                PopulateBookDetails(book);
+                PopulateItemDetails(item);
             }
             catch (Exception ex)
             {
@@ -139,39 +139,30 @@ namespace ReCircle.Pages
             }
         }
 
-        private async void PopulateBookDetails(Book book) //Populate the details page on the home page
+        private async void PopulateItemDetails(Item item) //Populate the details page on the home page
         {
-            book = await ItemData.GetBook(book.Id);
-            book.Author = await AuthorData.GetAuthor(book.AuthorId);
+            item = await ItemData.GetItem(item.Id);
 
-            txtTitle.Text = book.Title;
-            //Author author = Authors.Where(a => a.Id == book.AuthorId).FirstOrDefault();
-            txtAuthor.Content = book.Author.Name;
-            txtDescription.Text = book.Summary;
-            string s = "";/*
-            foreach (var g in book.BookGenres)
-            {
-                s += (g.Genre.Name + ", ");
-            }*/
+            txtTitle.Text = item.Title;
+            txtDescription.Text = item.Description;
 
-            txtGenre.Text = s;
             AuthorBooksList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-            if (!isStudent && Selected.GetType() == typeof(BookRequest))
+            if (!isStudent && Selected.GetType() == typeof(ItemRequest))
             {
-                var userName = $"Requested by {AllItemRequests?.Where(b => b.BookId == book.Id).FirstOrDefault().User.Name}";
-                StudentCheckedOut.Text = userName.ToString();
+                //var userName = $"Requested by {AllItemRequests?.Where(b => b.BookId == book.Id).FirstOrDefault().User.Name}";
+                //StudentCheckedOut.Text = userName.ToString();
             }
         }
 
-        private void PopulateAuthorDetails(Author author)
+        /*private void PopulateAuthorDetails(Author author)
         {
             txtTitle.Text = author.Name;
 
             AuthorBooksList.ItemsSource = author.BooksWritten.ToList();
             AuthorBooksList.Visibility = Windows.UI.Xaml.Visibility.Visible;
-        }
+        }*/
 
-        private async void TxtAuthor_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        /*private async void TxtAuthor_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             HyperlinkButton b = (HyperlinkButton)sender;
             var response = await AuthorData.GetBooksWithAuthor(Selected.Book.AuthorId);
@@ -182,33 +173,30 @@ namespace ReCircle.Pages
                 BooksWritten = response
             };
             PopulateAuthorDetails(a);
-        }
+        }*/
 
         private void SearchBox_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
         {
-            LightUpdateBooksList(SearchBox.Text);
+            LightUpdateItemsList(SearchBox.Text);
         }
 
-        private void LightUpdateBooksList(string search)
+        private void LightUpdateItemsList(string search)
         {
             AuthorBooksList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
 
-            List<Book> bookList = BookRequests;
+            List<Item> itemList = ItemRequests;
             search = search.ToLower();
 
-            bookList = bookList.Where(b => b.Title.ToLower().Contains(search)
-            || b.Author.Name.ToLower().Contains(search)
-            || b.Summary.ToLower().Contains(search)).ToList();
+            itemList = itemList.Where(i => i.Title.ToLower().Contains(search)).ToList();
 
-            BookRequestsList.ItemsSource = bookList;
+            ItemRequestsList.ItemsSource = itemList;
 
         }
 
         private async void CheckInBook_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            await ItemData.TurnInBook(new BookRecordDto()
+            await ItemData.TurnInItem(new BookRecordDto()
             {
-                BookId = Selected.BookId,
                 UserId = Selected.UserId
             });
         }
@@ -220,13 +208,13 @@ namespace ReCircle.Pages
 
             try
             {
-                var item = e.ClickedItem;
+                var Item = e.ClickedItem;
 
-                Book book = (Book)item;
+                Item item = (Item)Item;
 
-                Selected = AllItemRecords.Where(b => b.BookId == book.Id).FirstOrDefault();
+                Selected = AllItemRecords.Where(i => i.ItemId == item.Id).FirstOrDefault();
 
-                PopulateBookDetails(book);
+                PopulateItemDetails(item);
             }
             catch (Exception ex)
             {
