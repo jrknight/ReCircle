@@ -69,7 +69,7 @@ namespace ReCircle.Pages
                     {
                         ItemRecords.Add(i.Item);
                     }
-                    ItemRequestsList.ItemsSource = ItemRequests;
+                    BookRequestsList.ItemsSource = ItemRequests;
                     CheckedOutItemsList.ItemsSource = ItemRecords;
                 }
                 catch (Exception ex)

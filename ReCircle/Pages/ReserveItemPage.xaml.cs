@@ -25,8 +25,8 @@ namespace ReCircle.Pages
     /// </summary>
     public sealed partial class ReserveItemPage : Page
     {
-        private List<Book> Books = new List<Book>();
-        private Book BookToSubmit = new Book();
+        private List<Item> Books = new List<Item>();
+        private Item ItemToSubmit = new Item();
 
         public ReserveItemPage()
         {
@@ -36,7 +36,7 @@ namespace ReCircle.Pages
 
         private async void Init()
         {
-            Books = await ItemData.GetBooks();
+            Books = await ItemData.GetItems();
             BooksList.ItemsSource = Books;
         }
 
@@ -44,19 +44,17 @@ namespace ReCircle.Pages
         {
             var item = e.ClickedItem;
 
-            BookToSubmit = (Book)item;
+            ItemToSubmit = (Item)item;
 
         }
 
         private void LightUpdateBooksList(string search)
         {
 
-            List<Book> bookList = Books;
+            List<Item> bookList = Books;
             search = search.ToLower();
 
-            bookList = bookList.Where(b => b.Title.ToLower().Contains(search)
-            || b.Author.Name.ToLower().Contains(search)
-            || b.Summary.ToLower().Contains(search)).ToList();
+            bookList = bookList.Where(b => b.Title.ToLower().Contains(search)).ToList();
 
             BooksList.ItemsSource = bookList;
 
@@ -68,10 +66,12 @@ namespace ReCircle.Pages
 
         private async void ButtonSubmit_Click(object sender, RoutedEventArgs e)
         {
-            var response = await ItemData.PostBookCheckOut(
+            //TODO: Update Dtos
+
+            var response = await ItemData.PostItemCheckOut(
                 new BookRecordDto()
                 {
-                    BookId = BookToSubmit.Id,
+                    BookId = ItemToSubmit.Id,
                     RequestDate = DateTime.Now,
                     UserName = UserNameTextBox.Text
                 });

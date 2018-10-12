@@ -89,8 +89,8 @@ namespace ReCircle.Pages
                     }
                     else
                     {
-                        List<Book> book = new List<Item>();
-                        book.Add(new Book()
+                        List<Item> book = new List<Item>();
+                        book.Add(new Item()
                         {
                             Title = "No books here, you should add some!"
                         });
@@ -104,8 +104,8 @@ namespace ReCircle.Pages
             }
             else
             {
-                Items = await ItemData.GetBooks();
-                Items = Items.Where(b => b.Title.Contains(search) || b.Author.Name.Contains(search) || b.Summary.Contains(search)).ToList();
+                Items = await ItemData.GetItems();
+                Items = Items.Where(b => b.Title.Contains(search)).ToList();
             }
 
             /*catch(FlurlHttpException ex)
@@ -123,11 +123,11 @@ namespace ReCircle.Pages
             {
                 var item = e.ClickedItem;
 
-                Book book = (Book)item;
+                Item book = (Item)item;
 
                 CurrentlyDisplayed = book;
 
-                PopulateBookDetails(book);
+                PopulateItemDetails(book);
             }
             catch (Exception ex)
             {
@@ -138,27 +138,20 @@ namespace ReCircle.Pages
 
         private void PopulateItemDetails(Item item) //Populate the details page on the home page
         {
-            txtTitle.Text = book.Title;
-            //Author author = Authors.Where(a => a.Id == book.AuthorId).FirstOrDefault();
-            txtAuthor.Content = book.Author.Name;
-            txtDescription.Text = book.Summary;
-            string s = "";
-            foreach (var g in book.BookGenres)
-            {
-                s += (g.Genre.Name + ", ");
-            }
-            txtGenre.Text = s;
-            CurrentlyDisplayed = book;
+            txtTitle.Text = item.Title;
+            txtDescription.Text = item.Description;
+
+            CurrentlyDisplayed = item;
             AuthorBooksList.Visibility = Visibility.Collapsed;
             BooksWritten.Visibility = Visibility.Collapsed;
             RequestBookButton.Visibility = Visibility.Visible;
         }
 
-        private void PopulateAuthorDetails(Author author)
+        private void PopulateOwnerDetails(User user)
         {
-            txtTitle.Text = author.Name;
+            txtTitle.Text = user.Name;
 
-            AuthorBooksList.ItemsSource = author.BooksWritten.ToList();
+            //AuthorBooksList.ItemsSource = user.BooksWritten.ToList();
             AuthorBooksList.Visibility = Windows.UI.Xaml.Visibility.Visible;
             BooksWritten.Visibility = Visibility.Visible;
             RequestBookButton.Visibility = Visibility.Collapsed;
@@ -167,24 +160,16 @@ namespace ReCircle.Pages
         private async void TxtAuthor_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             HyperlinkButton b = (HyperlinkButton)sender;
-            var response = await AuthorData.GetBooksWithAuthor(CurrentlyDisplayed.AuthorId);
             txtDescription.Text = "";
             txtAuthor.Content = "";
             BooksWritten.Visibility = Visibility.Visible;
-
-            Author a = new Author()
-            {
-                Name = b.Content.ToString(),
-                BooksWritten = response
-            };
-            PopulateAuthorDetails(a);
         }
 
         private async void SearchBox_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
         {
             if (e.Key == Windows.System.VirtualKey.Enter)
             {
-                await UpdateBooks(SearchBox.Text);
+                await UpdateItems(SearchBox.Text);
             }
             else
             {
@@ -196,12 +181,10 @@ namespace ReCircle.Pages
 
         private void LightUpdateBooksList(string search)
         {
-            List<Book> bookList = Items;
+            List<Item> bookList = Items;
             search = search.ToLower();
 
-            bookList = bookList.Where(b => b.Title.ToLower().Contains(search)
-            || b.Author.Name.ToLower().Contains(search)
-            || b.Summary.ToLower().Contains(search)).ToList();
+            bookList = bookList.Where(b => b.Title.ToLower().Contains(search)).ToList();
 
             AvailableBooksList.ItemsSource = bookList;
 
@@ -214,7 +197,7 @@ namespace ReCircle.Pages
                 BookId = CurrentlyDisplayed.Id
             };
 
-            var response = await ItemData.PostNewBookRequest(bookRequest);
+            var response = await ItemData.PostNewItemRequest(bookRequest);
 
         }
     }
