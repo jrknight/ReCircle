@@ -143,6 +143,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="Config.json" />
     <None Include="ReCircle_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
