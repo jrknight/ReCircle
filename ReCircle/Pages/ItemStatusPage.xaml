@@ -87,7 +87,7 @@
                     <Button x:Name="CheckInBook" Content="Check In Book" Margin="20,0,20,0" Click="CheckInBook_Click" Visibility="Collapsed" />
                 </StackPanel>
                 <TextBlock x:Name="StudentCheckedOut" Text="" FontSize="20" Margin="5" Visibility="Collapsed"/>
-                <HyperlinkButton x:Name="txtAuthor" Content="" FontSize="20" Margin="5" Click="TxtAuthor_Click" />
+                <HyperlinkButton x:Name="txtAuthor" Content="" FontSize="20" Margin="5" />
                 <TextBlock x:Name="txtGenre" Text="" FontSize="20" Margin="5" />
                 <TextBlock x:Name="txtDescription" Text="" FontSize="20" Margin="5" TextWrapping="WrapWholeWords"/>
                 <ListView Visibility="Collapsed" x:Name="AuthorBooksList">

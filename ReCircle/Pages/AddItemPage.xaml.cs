@@ -61,7 +61,6 @@ namespace ReCircle.Pages
             string Title = string.Empty;
             string Summary = string.Empty;
             ArrayList genreIds = new ArrayList();
-            int authorId = -1;
             string Isbn = string.Empty;
 
             if (TitleTextBox.Text.Equals(""))

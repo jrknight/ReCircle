@@ -70,7 +70,7 @@ namespace ReCircle.Pages
                         ItemRecords.Add(i.Item);
                     }
                     BookRequestsList.ItemsSource = ItemRequests;
-                    CheckedOutItemsList.ItemsSource = ItemRecords;
+                    CheckedOutBooksList.ItemsSource = ItemRecords;
                 }
                 catch (Exception ex)
                 {
@@ -95,7 +95,7 @@ namespace ReCircle.Pages
                     {
                         items.Add(i.Item);
                     }
-                    ItemRequestsList.ItemsSource = items;
+                    BookRequestsList.ItemsSource = items;
 
                     var contentCheckedOut = await ItemData.GetAllCheckedOutItems();
                     AllItemRecords = contentCheckedOut;
@@ -105,7 +105,7 @@ namespace ReCircle.Pages
                     {
                         itemsCheckedOut.Add(i.Item);
                     }
-                    CheckedOutItemsList.ItemsSource = itemsCheckedOut;
+                    CheckedOutBooksList.ItemsSource = itemsCheckedOut;
                 }
                 catch (Exception ex)
                 {
@@ -189,7 +189,7 @@ namespace ReCircle.Pages
 
             itemList = itemList.Where(i => i.Title.ToLower().Contains(search)).ToList();
 
-            ItemRequestsList.ItemsSource = itemList;
+            BookRequestsList.ItemsSource = itemList;
 
         }
 
