@@ -34,11 +34,22 @@ namespace ReCircle
             Instance.RequestedItems.Add(new ItemRequest { Item = item, CurrentHolderNickname = item.CurrentHolderNickname, OwnerNickname = item.CurrentHolderNickname, RequestDate = DateTime.Now });
         }
 
+        public static void ClaimItem()
+        {
+            //TODO: Add this functionality
+        }
+
         public static void AddItem(Item item)
         {
             Instance.Credits += 1;
             Instance.BrowsePage.Add(item);
             Instance.SubmittedItems.Add(item);
+        }
+
+        public static void CancelRequest(ItemRequest item)
+        {
+            Instance.BrowsePage.Add(item.Item);
+            Instance.RequestedItems.Remove(item);
         }
 
     }
