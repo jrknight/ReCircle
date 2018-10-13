@@ -57,31 +57,46 @@ namespace ReCircle.Pages
         {
 
             string Title = string.Empty;
-            string Summary = string.Empty;
-            ArrayList genreIds = new ArrayList();
-            string Isbn = string.Empty;
+            string Description = string.Empty;
+            string ImageUrl = string.Empty;
 
             if (TitleTextBox.Text.Equals(""))
             {
-                TitleTextBox.PlaceholderText = "You must provide a title value.";
+                NeedTitle.Visibility = Visibility.Visible;
                 TitleTextBox.PlaceholderForeground = new SolidColorBrush(Colors.Red);
+            }
+            else if (DescriptionTextBox.Text.Equals(""))
+            {
+                NeedTitle.Visibility = Visibility.Collapsed;
+
+                NeedDescription.Visibility = Visibility.Visible;
+                DescriptionTextBox.PlaceholderForeground = new SolidColorBrush(Colors.Red);
+            }
+            else if (UrlTextBox.Text.Equals(""))
+            {
+                NeedDescription.Visibility = Visibility.Collapsed;
+
+                NeedURL.Visibility = Visibility.Visible;
+                UrlTextBox.PlaceholderForeground = new SolidColorBrush(Colors.Red);
             }
             else
             {
-                Title = TitleTextBox.Text;
+                NeedURL.Visibility = Visibility.Collapsed;
 
-                //Check fields and add items
+                Title = TitleTextBox.Text;
+                Description = DescriptionTextBox.Text;
+                ImageUrl = UrlTextBox.Text;
             }
             try
             {
-                ItemForCreationDto dto = new ItemForCreationDto
+                /*ItemForCreationDto dto = new ItemForCreationDto
                 {
                     Title = TitleTextBox.Text,
                     Summary = DescriptionTextBox.Text,
                 };
 
                 var response = await ItemData.PostItem(dto);
-                Debug.WriteLine($"Response on creation of book: {response}");
+                Debug.WriteLine($"Response on creation of book: {response}");*/
             }
             catch (Exception ex)
             {
