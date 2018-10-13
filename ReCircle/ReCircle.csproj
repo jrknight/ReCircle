@@ -108,6 +108,7 @@
     <Compile Include="Classes\ItemRequest.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Configuration.cs" />
+    <Compile Include="DummyData.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
