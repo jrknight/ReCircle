@@ -24,7 +24,7 @@ namespace ReCircle.Pages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ItemDetailsPage : Page
+    public sealed partial class ItemStatusPage : Page
     {
         private List<Item> ItemRequests = new List<Item>();
         private List<Item> ItemRecords = new List<Item>();
@@ -34,21 +34,12 @@ namespace ReCircle.Pages
         private bool isStudent;
 
 
-        public ItemDetailsPage()
+        public ItemStatusPage()
         {
             this.InitializeComponent();
             SearchBox.KeyDown += new KeyEventHandler(SearchBox_KeyDown);
             LoadingIndicator.IsActive = true;
-            if (Authentication.Instance.Role.Any(r => r.ToLower().Equals("student")))
-            {
-                isStudent = true;
-                Init(true);
-            }
-            else if (Authentication.Instance.Role.Equals("librarian"))
-            {
-                isStudent = false;
-                Init(false);
-            }
+            Init(true);
         }
 
         public async void Init(bool isStudent)

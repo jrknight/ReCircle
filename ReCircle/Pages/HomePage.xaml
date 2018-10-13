@@ -20,9 +20,9 @@
                         <TextBlock Text="Home" FontSize="18" VerticalAlignment="Center" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Button x:Name="btnLibrary" FontFamily="Segoe MDL2 Assets" Content="&#xE8F1;"
-                        Width="50" Height="50" Background="Transparent" Click="_btnLibrary_Click"/>
-                        <TextBlock Text="Library" FontSize="18" VerticalAlignment="Center" />
+                        <Button x:Name="btnLibrary" FontFamily="Segoe MDL2 Assets" Content="&#xE7BF;"
+                        Width="50" Height="50" Background="Transparent" Click="_btnBrowse_Click"/>
+                        <TextBlock Text="Browse" FontSize="18" VerticalAlignment="Center" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Button x:Name="btnSettings" FontFamily="Segoe MDL2 Assets" Content="&#xE713;"

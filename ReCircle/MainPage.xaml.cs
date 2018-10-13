@@ -70,6 +70,7 @@ namespace ReCircle
 
         private async void _btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            NavigateToHomePage();
             if ((bool)StoreUserNameAndPassword.IsChecked)
             {
                 StoreCredentials(usernameTextBox.Text, passwordTextBox.Password);
@@ -80,7 +81,9 @@ namespace ReCircle
 
         private void NavigateToHomePage()
         {
-            Frame.Navigate(typeof(HomePage));
+            var rootFrame = Window.Current.Content as Frame;
+            var mainPage = rootFrame.Content as MainPage;
+            rootFrame.Navigate(typeof(HomePage));
         }
 
         private async Task TryLogin(string username, string password)

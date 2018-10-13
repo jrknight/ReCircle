@@ -10,58 +10,12 @@
     <Grid>
         <ScrollViewer>
             <StackPanel VerticalAlignment="Center" Orientation="Vertical" Width="450">
-                <TextBlock Text="Add a New Book" TextAlignment="Center" FontSize="50" Margin="10"/>
+                <TextBlock Text="Add a New Item" TextAlignment="Center" FontSize="50" Margin="10"/>
                 <TextBox x:Name="TitleTextBox" PlaceholderText="Title" Width="400" Margin="10"/>
-                <ProgressRing x:Name="LoadingIndicator" IsActive="True" Height="50" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Text="Select or Add an Author:" HorizontalAlignment="Center" />
-                <Grid Width="400">
-                    <ListView x:Name="AuthorList" IsItemClickEnabled="True" Height="200" Width="350" Margin="0,10,0,10" HorizontalAlignment="Left" >
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Name}" Margin="20,0,20,8" 
-                                       FontSize="16"
-                                       Foreground="Black"
-                                       TextWrapping="Wrap"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <Button x:Name="OpenNewAuthor" FontFamily="Segoe MDL2 Assets" Content="&#xE710;" Margin="10" Height="200" HorizontalAlignment="Right" />
-                </Grid>
-                <Grid x:Name="NewAuthorMenu" Visibility="Collapsed" Width="400">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox x:Name="NewAuthorTextBox" PlaceholderText="Author" Margin="10" Width="325" HorizontalAlignment="Left" Height="32"/>
-                    <Button x:Name="NewAuthorButton" FontFamily="Segoe MDL2 Assets" Content="&#xE710;" Margin="10" Height="32" HorizontalAlignment="Right" />
-                </Grid>
-                <TextBox x:Name="SummaryTextBox" PlaceholderText="Summary" TextWrapping="Wrap" Width="400" MaxHeight="200" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Auto" AcceptsReturn="True" />
-                <TextBox x:Name="IsbnTextBox" PlaceholderText="ISBN" Width="400" Margin="10" />
-                <TextBlock Text="Select or Add Some Genres:" HorizontalAlignment="Center" />
-                <Grid Width="400">
-                    <ListView x:Name="GenreList" IsItemClickEnabled="True" Height="200" Width="350" HorizontalAlignment="Left" Margin="0,10,0,10" >
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <RadioButton Content="{Binding Name}"
-                                        Margin="20,0,20,8"
-                                        FontSize="16"
-                                        Foreground="Black" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <Button x:Name="OpenNewGenre" FontFamily="Segoe MDL2 Assets" Content="&#xE710;" Margin="10" Height="200" HorizontalAlignment="Right" />
-                </Grid>
-                <Grid x:Name="NewGenreMenu" Visibility="Collapsed" Width="400">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox x:Name="NewGenreTextBox" PlaceholderText="Genre" Margin="10" Width="325" HorizontalAlignment="Left" Height="32"/>
-                    <Button x:Name="NewGenreButton" FontFamily="Segoe MDL2 Assets" Content="&#xE710;" Margin="10" Height="32" HorizontalAlignment="Right" />
-                </Grid>
+                <TextBox x:Name="DescriptionTextBox" PlaceholderText="Description" TextWrapping="Wrap" Width="400" Height="200" MaxHeight="200" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Auto" AcceptsReturn="True" />
+                <TextBox x:Name="UrlTextBox" PlaceholderText="URL" Width="400" Margin="10"/>
                 <Button x:Name="AddButton" Content="Submit Book" HorizontalAlignment="Center" Margin="10" />
+                <ProgressRing x:Name="LoadingIndicator" IsActive="True" Height="50" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>

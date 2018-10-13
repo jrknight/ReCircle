@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="ReCircle.Pages.ItemDetailsPage"
+    x:Class="ReCircle.Pages.ItemStatusPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:ReCircle.Pages"
@@ -27,7 +27,7 @@
             </Grid.RowDefinitions>
             <TextBox x:Name="SearchBox" PlaceholderText="Search" Margin="5,5,5,0" Grid.Row="0" VerticalAlignment="Top"/>
             <StackPanel Grid.Row="1">
-                <TextBlock x:Name="RequestedBooksListLabel" VerticalAlignment="Center" Text="Requested Books:" Margin="10" FontSize="20"/>
+                <TextBlock x:Name="RequestedBooksListLabel" VerticalAlignment="Center" Text="Requested Items:" Margin="10" FontSize="20"/>
             </StackPanel>
             <ProgressRing x:Name="LoadingIndicator" Grid.Row="2" IsActive="True" Height="75" Width="75" VerticalAlignment="Top"/>
             <ListView x:Name="BookRequestsList" Grid.Row="2" IsItemClickEnabled="True" ItemClick="AvailableBooksList_ItemClick">
@@ -52,7 +52,7 @@
                 </ListView.ItemTemplate>
             </ListView>
             <StackPanel Grid.Row="3">
-                <TextBlock x:Name="CheckedOutBooksListLabel" VerticalAlignment="Center" Margin="10" Text="Checked Out Books:" FontSize="20"/>
+                <TextBlock x:Name="CheckedOutBooksListLabel" VerticalAlignment="Center" Margin="10" Text="Submitted Items:" FontSize="20"/>
             </StackPanel>
             <ListView x:Name="CheckedOutBooksList" Grid.Row="4" IsItemClickEnabled="True" ItemClick="CheckedOutBooksList_ItemClick">
                 <ListView.ItemTemplate>

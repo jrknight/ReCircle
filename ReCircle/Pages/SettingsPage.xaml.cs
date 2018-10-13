@@ -35,7 +35,9 @@ namespace ReCircle.Pages
 
             Authentication.Instance = null;
 
-            Frame.Navigate(typeof(MainPage));
+            var rootFrame = Window.Current.Content as Frame;
+            var mainPage = rootFrame.Content as MainPage;
+            rootFrame.Navigate(typeof(MainPage));
         }
     }
 }

@@ -40,7 +40,6 @@ namespace ReCircle.Pages
         {
             try
             {
-                AuthorList.Visibility = Visibility.Collapsed;
                 //Debug.WriteLine(authors.ToString());
             }
             catch (JsonReaderException ex)
@@ -49,7 +48,6 @@ namespace ReCircle.Pages
             }
             finally
             {
-                AuthorList.Visibility = Visibility.Visible;
                 LoadingIndicator.IsActive = false;
                 LoadingIndicator.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             }
@@ -74,15 +72,12 @@ namespace ReCircle.Pages
 
                 //Check fields and add items
             }
-
             try
             {
                 BookForCreationDto dto = new BookForCreationDto
                 {
                     Title = TitleTextBox.Text,
-                    Summary = SummaryTextBox.Text,
-                    ISBN = IsbnTextBox.Text,
-                    GenreIds = genreIds
+                    Summary = DescriptionTextBox.Text,
                 };
 
                 var response = await ItemData.PostItem(dto);
@@ -92,32 +87,6 @@ namespace ReCircle.Pages
             {
                 Debug.WriteLine($"An exception occurred creating the data transfer object: {ex}");
             }
-        }
-
-        private void OpenNewGenre_Click(object sender, RoutedEventArgs e)
-        {
-            if (NewGenreMenu.Visibility == Visibility.Collapsed)
-            {
-                NewGenreMenu.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                NewGenreMenu.Visibility = Visibility.Collapsed;
-            }
-        }
-
-        private void OpenNewAuthor_Click(object sender, RoutedEventArgs e)
-        {
-            if (NewAuthorMenu.Visibility == Visibility.Collapsed)
-            {
-                NewAuthorMenu.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                NewAuthorMenu.Visibility = Visibility.Collapsed;
-            }
-        }
-
-        
+        }       
     }
 }

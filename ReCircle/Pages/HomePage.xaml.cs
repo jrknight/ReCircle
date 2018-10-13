@@ -28,8 +28,8 @@ namespace ReCircle.Pages
         public HomePage()
         {
             this.InitializeComponent();
-            ContentFrame.Navigate(typeof(ItemListPage));
-            if (Authentication.Instance.Role.Any(r => r.ToLower().Equals("student")))
+            ContentFrame.Navigate(typeof(ItemStatusPage));
+            /*if (Authentication.Instance.Role.Any(r => r.ToLower().Equals("student")))
             {
                 isStudent = true;
                 AddBookButton.Visibility = Visibility.Collapsed;
@@ -42,7 +42,7 @@ namespace ReCircle.Pages
                 AddBookButton.Visibility = Visibility.Visible;
                 CheckOutBook.Visibility = Visibility.Visible;
                 PrintReport.Visibility = Visibility.Collapsed;
-            }
+            }*/
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
@@ -52,14 +52,14 @@ namespace ReCircle.Pages
 
         private void _btnHome_Click(object sender, RoutedEventArgs e)
         {
-            ContentFrame.Navigate(typeof(ItemDetailsPage));
+            ContentFrame.Navigate(typeof(ItemStatusPage));
             _txtPageLabel.Text = "Home";
         }
 
-        private void _btnLibrary_Click(object sender, RoutedEventArgs e)
+        private void _btnBrowse_Click(object sender, RoutedEventArgs e)
         {
             ContentFrame.Navigate(typeof(ItemListPage));
-            _txtPageLabel.Text = "Library";
+            _txtPageLabel.Text = "Browse";
         }
 
         private void _btnSettings_Click(object sender, RoutedEventArgs e)
