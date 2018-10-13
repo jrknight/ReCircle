@@ -60,7 +60,7 @@ namespace ReCircle.Pages
                 }*/
 
                 BookRequestsList.ItemsSource = DummyData.Instance.RequestedItems;
-                CheckedOutBooksList.ItemsSource = ItemRecords;
+                CheckedOutBooksList.ItemsSource = DummyData.Instance.SubmittedItems;
             }
             catch (Exception ex)
             {

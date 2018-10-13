@@ -25,6 +25,7 @@ namespace ReCircle
         public int Credits = 2;
         public List<Item> BrowsePage = new List<Item>();
         public List<ItemRequest> RequestedItems = new List<ItemRequest>();
+        public List<Item> SubmittedItems = new List<Item>();
 
 
         public static void RequestItem(Item item)
@@ -37,6 +38,7 @@ namespace ReCircle
         {
             Instance.Credits += 1;
             Instance.BrowsePage.Add(item);
+            Instance.SubmittedItems.Add(item);
         }
 
     }
