@@ -20,6 +20,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
+                            <Image Source="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/242ce817-97a3-48fe-9acd-b1bf97930b01/09-posterization-opt.jpg"/>
                             <TextBlock VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Text="&#xE8F1;" Height="30" Width="30"/>
                             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                                 <TextBlock Text="{Binding Title}"
