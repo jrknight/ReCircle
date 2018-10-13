@@ -53,7 +53,7 @@ namespace ReCircle.Pages
             }
         }
 
-        private async void AddButton_Click(object sender, RoutedEventArgs e)
+        private void AddButton_Click(object sender, RoutedEventArgs e)
         {
 
             string Title = string.Empty;
@@ -89,6 +89,15 @@ namespace ReCircle.Pages
             }
             try
             {
+                Item newItem = new Item { Title = TitleTextBox.Text,
+                    Description = DescriptionTextBox.Text,
+                    PhotoUrl = new Uri(UrlTextBox.Text),
+                    OwnerNickname = "Denielle",
+                    OwnerEmail = "denielle's email fucks sake" };
+
+
+                DummyData.AddItem(newItem);
+
                 /*ItemForCreationDto dto = new ItemForCreationDto
                 {
                     Title = TitleTextBox.Text,
