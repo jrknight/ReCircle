@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -15,7 +16,7 @@ namespace ReCircle.Classes
         [Required]
         public string Description { get; set; }
         [Required]
-        public string PhotoUrl { get; set; }
+        public Uri PhotoUrl { get; set; }
         [Required]
         public string OwnerEmail { get; set; }
         public string OwnerNickname { get; set; }
