@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -82,7 +83,7 @@ namespace ReCircle.Pages
                     //Items = await ItemData.GetItems();
                     Items = DummyData.Instance.BrowsePage;
                     AvailableBooksList.ItemsSource = Items;
-                    AuthorBooksList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                    //AuthorBooksList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                     if (Items.Count > 0)
                     {
                         PopulateItemDetails(Items.ElementAt(0));
@@ -140,10 +141,13 @@ namespace ReCircle.Pages
         {
             txtTitle.Text = item.Title;
             txtDescription.Text = item.Description;
+            txtOwner.Text = item.OwnerNickname;
+            txtEmail.Text = item.OwnerEmail;
+            image.Source = new BitmapImage(item.PhotoUrl);
 
             CurrentlyDisplayed = item;
-            AuthorBooksList.Visibility = Visibility.Collapsed;
-            BooksWritten.Visibility = Visibility.Collapsed;
+            //AuthorBooksList.Visibility = Visibility.Collapsed;
+            //BooksWritten.Visibility = Visibility.Collapsed;
             RequestBookButton.Visibility = Visibility.Visible;
         }
 
@@ -152,18 +156,18 @@ namespace ReCircle.Pages
             txtTitle.Text = user.Name;
 
             //AuthorBooksList.ItemsSource = user.BooksWritten.ToList();
-            AuthorBooksList.Visibility = Windows.UI.Xaml.Visibility.Visible;
-            BooksWritten.Visibility = Visibility.Visible;
+            //AuthorBooksList.Visibility = Windows.UI.Xaml.Visibility.Visible;
+            //BooksWritten.Visibility = Visibility.Visible;
             RequestBookButton.Visibility = Visibility.Collapsed;
         }
 
-        private async void TxtAuthor_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        /*private async void TxtAuthor_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             HyperlinkButton b = (HyperlinkButton)sender;
             txtDescription.Text = "";
             txtAuthor.Content = "";
             BooksWritten.Visibility = Visibility.Visible;
-        }
+        }*/
 
         private async void SearchBox_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
         {
