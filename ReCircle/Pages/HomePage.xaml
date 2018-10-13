@@ -11,23 +11,23 @@
     <Grid>
         <SplitView x:Name="_splitView" Opacity="20" DisplayMode="CompactOverlay" IsPaneOpen="False" CompactPaneLength="50" OpenPaneLength="150">
             <SplitView.Pane>
-                <StackPanel Background="Gray">
-                    <Button x:Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"
-                    Width="50" Height="50" Background="Transparent" Click="HamburgerButton_Click"/>
+                <StackPanel Background="#546a76">
+                    <Button x:Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" 
+                    Width="50" Height="50" Background="Transparent" Click="HamburgerButton_Click" Foreground="White"/>
                     <StackPanel Orientation="Horizontal">
-                        <Button x:Name="btnHome" FontFamily="Segoe MDL2 Assets" Content="&#xE80F;"
+                        <Button x:Name="btnHome" Foreground="White" FontFamily="Segoe MDL2 Assets" Content="&#xE80F;"
                     Width="50" Height="50" Background="Transparent" Click="_btnHome_Click"/>
-                        <TextBlock Text="Home" FontSize="18" VerticalAlignment="Center" />
+                        <TextBlock Text="Home" FontSize="18" VerticalAlignment="Center" Foreground="White" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Button x:Name="btnLibrary" FontFamily="Segoe MDL2 Assets" Content="&#xE7BF;"
+                        <Button x:Name="btnLibrary" FontFamily="Segoe MDL2 Assets" Foreground="White" Content="&#xE7BF;"
                         Width="50" Height="50" Background="Transparent" Click="_btnBrowse_Click"/>
-                        <TextBlock Text="Browse" FontSize="18" VerticalAlignment="Center" />
+                        <TextBlock Text="Browse" Foreground="White" FontSize="18" VerticalAlignment="Center" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Button x:Name="btnSettings" FontFamily="Segoe MDL2 Assets" Content="&#xE713;"
+                        <Button x:Name="btnSettings" Foreground="White" FontFamily="Segoe MDL2 Assets" Content="&#xE713;"
                         Width="50" Height="50" Background="Transparent" Click="_btnSettings_Click"/>
-                        <TextBlock Text="Settings" FontSize="18" VerticalAlignment="Center" />
+                        <TextBlock Text="Settings" Foreground="White" FontSize="18" VerticalAlignment="Center" />
                     </StackPanel>
                 </StackPanel>
             </SplitView.Pane>
@@ -37,12 +37,12 @@
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <CommandBar Height="50" AllowDrop="True" Grid.Row="0" >
-                        <AppBarButton x:Name="AddBookButton" Icon ="Add" VerticalAlignment="Stretch" Click="AppBarButton_Click"/>
-                        <AppBarButton x:Name="CheckOutBook" Icon="ImportAll" Click="CheckOutBook_Click" />
-                        <AppBarButton x:Name="HelpButton" Icon="Help" Click="Help_Click" />
+                    <CommandBar Height="50" AllowDrop="True" Grid.Row="0" Background="#88a0a8" >
+                        <AppBarButton x:Name="AddBookButton" Icon ="Add" VerticalAlignment="Stretch" Click="AppBarButton_Click" Foreground="White"/>
+                        <AppBarButton x:Name="CheckOutBook" Icon="ImportAll" Click="CheckOutBook_Click" Foreground="White" />
+                        <AppBarButton x:Name="HelpButton" Icon="Help" Click="Help_Click" Foreground="White" />
                     </CommandBar>
-                    <TextBlock x:Name="_txtPageLabel" Text="Home" VerticalAlignment="Center" Width="200" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+                    <TextBlock x:Name="_txtPageLabel" Text="Home" VerticalAlignment="Center" Width="200" HorizontalAlignment="Left" Margin="20,0,0,0" FontSize="20" Foreground="White"/>
                     <Frame x:Name="ContentFrame" Grid.Row="1"/>
                 </Grid>
             </SplitView.Content>
