@@ -27,7 +27,7 @@
                                        FontSize="28"
                                        Foreground="Black"
                                        TextWrapping="Wrap"/>
-                                <TextBlock Text="{Binding Author.Name}"
+                                <TextBlock Text="{Binding Description}"
                                        Margin="30,0,20,8"
                                        FontSize="16"
                                        Foreground="Black"
