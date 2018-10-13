@@ -18,8 +18,10 @@ namespace ReCircle.Classes
         public string PhotoUrl { get; set; }
         [Required]
         public string OwnerEmail { get; set; }
+        public string OwnerNickname { get; set; }
         [Required]
         public string CurrentHolderEmail { get; set; }
+        public string CurrentHolderNickname { get; set; }
 
 
         
