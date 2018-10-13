@@ -26,7 +26,7 @@ namespace ReCircle.Classes.http
             return await Get<Item>($"api/books/{Id}");
         }
 
-        public static async Task<HttpResponseMessage> PostItem(BookForCreationDto book)
+        public static async Task<HttpResponseMessage> PostItem(ItemForCreationDto book)
         {
             return await Post("api/books", book);
         }

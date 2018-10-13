@@ -98,7 +98,7 @@
     <Compile Include="Authentication.cs" />
     <Compile Include="Classes\http\BaseHttp.cs" />
     <Compile Include="Classes\http\ItemData.cs" />
-    <Compile Include="Classes\http\dto\BookForCreationDto.cs" />
+    <Compile Include="Classes\http\dto\ItemForCreationDto.cs" />
     <Compile Include="Classes\http\dto\BookRecordDto.cs" />
     <Compile Include="Classes\http\dto\BookRequestDto.cs" />
     <Compile Include="Classes\http\dto\UpdateDto.cs" />
