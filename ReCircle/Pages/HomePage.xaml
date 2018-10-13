@@ -47,5 +47,23 @@
                 </Grid>
             </SplitView.Content>
         </SplitView>
+
+        <ContentDialog x:Name="helpDialog"
+           PrimaryButtonText="Back" IsPrimaryButtonEnabled="True"
+                       SecondaryButtonText="Submit" IsSecondaryButtonEnabled="True">
+            <ContentDialog.TitleTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Need Help?"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ContentDialog.TitleTemplate>
+            <StackPanel>
+                <TextBlock TextWrapping="WrapWholeWords">
+                    <Run Text="Ask an admin a question:"/>
+                </TextBlock>
+                <TextBox PlaceholderText="Question" Height="200" Width="400" Margin="10"/>
+            </StackPanel>
+        </ContentDialog>
     </Grid>
 </Page>

@@ -127,9 +127,6 @@
     <Compile Include="Pages\ItemListPage.xaml.cs">
       <DependentUpon>ItemListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\HelpPage.xaml.cs">
-      <DependentUpon>HelpPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\ReserveItemPage.xaml.cs">
       <DependentUpon>ReserveItemPage.xaml</DependentUpon>
     </Compile>
@@ -182,10 +179,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ItemListPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\HelpPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
