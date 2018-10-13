@@ -140,9 +140,9 @@ namespace ReCircle.Pages
         private void PopulateItemDetails(Item item) //Populate the details page on the home page
         {
             txtTitle.Text = item.Title;
-            txtDescription.Text = item.Description;
-            txtOwner.Text = item.OwnerNickname;
-            txtEmail.Text = item.OwnerEmail;
+            txtDescription.Text = "Description: " + item.Description;
+            txtOwner.Text = "Owner: " + item.OwnerNickname;
+            txtEmail.Text = "Email: " + item.OwnerEmail;
             image.Source = new BitmapImage(item.PhotoUrl);
 
             CurrentlyDisplayed = item;
