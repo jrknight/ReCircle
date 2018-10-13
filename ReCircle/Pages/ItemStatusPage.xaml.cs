@@ -31,7 +31,6 @@ namespace ReCircle.Pages
         private List<ItemRequest> AllItemRequests = new List<ItemRequest>();
         private List<ItemRecord> AllItemRecords = new List<ItemRecord>();
         private dynamic Selected;
-        private bool isStudent;
 
 
         public ItemStatusPage()
@@ -44,70 +43,69 @@ namespace ReCircle.Pages
 
         public async void Init()
         {
-            if (isStudent)
+            
+            try
             {
-                try
+                //var content = await ItemData.GetUsersItemRequests();
+
+                /*foreach (ItemRequest i in content)
                 {
-                    var content = await ItemData.GetUsersItemRequests();
-                    ItemRequests = new List<Item>();
-                    foreach (ItemRequest i in content)
-                    {
-                        ItemRequests.Add(i.Item);
-                    }
-                    var content2 = await ItemData.GetCheckedOutItems();
-                    ItemRecords = new List<Item>();
-                    foreach (ItemRecord i in content2)
-                    {
-                        ItemRecords.Add(i.Item);
-                    }
-                    BookRequestsList.ItemsSource = ItemRequests;
-                    CheckedOutBooksList.ItemsSource = ItemRecords;
+                    ItemRequests.Add(i.Item);
                 }
-                catch (Exception ex)
+                var content2 = await ItemData.GetCheckedOutItems();
+                ItemRecords = new List<Item>();
+                foreach (ItemRecord i in content2)
                 {
-                    Debug.WriteLine($"An exception occurred on home page initialization: {ex}");
-                }
-                finally
-                {
-                    LoadingIndicator.IsActive = false;
-                    LoadingIndicator.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-                }
+                    ItemRecords.Add(i.Item);
+                }*/
+
+                BookRequestsList.ItemsSource = DummyData.Instance.RequestedItems;
+                CheckedOutBooksList.ItemsSource = ItemRecords;
             }
-            else
+            catch (Exception ex)
             {
-                try
-                {
-                    //TODO: Add method to show all checked out books and the students with them ---- must have an option to printout as well
-                    var content = await ItemData.GetAllItemRequests();
-                    List<Item> items = new List<Item>();
-                    AllItemRequests = content;
-                    StudentCheckedOut.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                    foreach (ItemRequest i in AllItemRequests)
-                    {
-                        items.Add(i.Item);
-                    }
-                    BookRequestsList.ItemsSource = items;
-
-                    var contentCheckedOut = await ItemData.GetAllCheckedOutItems();
-                    AllItemRecords = contentCheckedOut;
-
-                    List<Item> itemsCheckedOut = new List<Item>();
-                    foreach (ItemRecord i in AllItemRecords)
-                    {
-                        itemsCheckedOut.Add(i.Item);
-                    }
-                    CheckedOutBooksList.ItemsSource = itemsCheckedOut;
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine($"An exception occurred on home page initialization: {ex}");
-                }
-                finally
-                {
-                    LoadingIndicator.IsActive = false;
-                    LoadingIndicator.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-                }
+                Debug.WriteLine($"An exception occurred on home page initialization: {ex}");
             }
+            finally
+            {
+                LoadingIndicator.IsActive = false;
+                LoadingIndicator.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            }
+            
+            
+            try
+            {
+                //TODO: Add method to show all checked out books and the students with them ---- must have an option to printout as well
+                var content = await ItemData.GetAllItemRequests();
+                List<Item> items = new List<Item>();
+                AllItemRequests = content;
+                StudentCheckedOut.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                foreach (ItemRequest i in AllItemRequests)
+                {
+                    items.Add(i.Item);
+                }
+                BookRequestsList.ItemsSource = items;
+
+                var contentCheckedOut = await ItemData.GetAllCheckedOutItems();
+                AllItemRecords = contentCheckedOut;
+
+                List<Item> itemsCheckedOut = new List<Item>();
+                foreach (ItemRecord i in AllItemRecords)
+                {
+                    itemsCheckedOut.Add(i.Item);
+                }
+                CheckedOutBooksList.ItemsSource = itemsCheckedOut;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"An exception occurred on home page initialization: {ex}");
+            }
+            finally
+            {
+                LoadingIndicator.IsActive = false;
+                LoadingIndicator.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            }
+            
         }
 
         private void AvailableBooksList_ItemClick(object sender, ItemClickEventArgs e)
@@ -138,11 +136,11 @@ namespace ReCircle.Pages
             txtDescription.Text = item.Description;
 
             AuthorBooksList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-            if (!isStudent && Selected.GetType() == typeof(ItemRequest))
+            /*if (!isStudent && Selected.GetType() == typeof(ItemRequest))
             {
                 //var userName = $"Requested by {AllItemRequests?.Where(b => b.BookId == book.Id).FirstOrDefault().User.Name}";
                 //StudentCheckedOut.Text = userName.ToString();
-            }
+            }*/
         }
 
         /*private void PopulateAuthorDetails(Author author)

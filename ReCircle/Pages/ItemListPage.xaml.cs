@@ -196,12 +196,13 @@ namespace ReCircle.Pages
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            var bookRequest = new BookRequestDto()
+            /*var bookRequest = new BookRequestDto()
             {
                 BookId = CurrentlyDisplayed.Id
             };
 
-            var response = await ItemData.PostNewItemRequest(bookRequest);
+            var response = await ItemData.PostNewItemRequest(bookRequest);*/
+            DummyData.RequestItem(CurrentlyDisplayed);
 
         }
     }
