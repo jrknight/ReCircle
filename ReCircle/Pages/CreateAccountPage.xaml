@@ -10,29 +10,23 @@
 
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBox x:Name="Name" PlaceholderText="Full Name" Width="400" Margin="10" />
-            <TextBlock x:Name="NameNotFilled" Visibility="Collapsed">Full Name Must Be Filled.</TextBlock>
-            <TextBox x:Name="UserId" PlaceholderText="Username" Margin="10" />
-            <TextBlock x:Name="UsernameNotLongEnough" Visibility="Collapsed">Username Must Be At Least 4 Characters Long.</TextBlock>
-            <TextBox x:Name="Email" PlaceholderText="Email" Margin="10" />
-            <TextBlock x:Name="EmailNotEmail" Visibility="Collapsed">Email Must Exist.</TextBlock>
+            <TextBlock x:Name="_txtTitle" Text="Create Account" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="72" FontFamily="Segoe UI" CanDrag="False" Margin="25" />
+            
+            <TextBox x:Name="Name" PlaceholderText="Full Name" Width="400" Margin="10"/>
+            <TextBlock x:Name="NameNotFilled" HorizontalAlignment="Center" Visibility="Collapsed">Full Name Must Be Filled.</TextBlock>
+            
+            <TextBox x:Name="UserId" PlaceholderText="Username" Width="400" Margin="10" />
+            <TextBlock x:Name="UsernameNotLongEnough" HorizontalAlignment="Center" Visibility="Collapsed">Username Must Be At Least 4 Characters Long.</TextBlock>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width=".9*"/>
-                    <ColumnDefinition Width=".1*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                </Grid.RowDefinitions>
-                <PasswordBox x:Name="Password" PlaceholderText="Password" Margin="10" Width="400" Grid.Column="0" />
-                <TextBlock x:Name="PasswordNotLongEnough" Visibility="Collapsed">Password Must Be At Least 8 Characters Long.</TextBlock>
-                <PasswordBox x:Name="ConfirmPassword" PlaceholderText="Confirm Password" Margin="10" Grid.Column="0" Grid.Row="1" />
-                <TextBlock x:Name="PasswordNotSame" Visibility="Collapsed">Passwords Must Be The Same.</TextBlock>
-                <Image Grid.Row="1" Height="25" Grid.Column="1" x:Name="PasswordMeetsRequirements" />
-            </Grid>
-            <TextBox Visibility="Collapsed" x:Name="IsAdminText" PlaceholderText="Enter an Admin Code" Margin="10"/>
+            <TextBox x:Name="Email" PlaceholderText="Email" Width="400" Margin="10" />
+            <TextBlock x:Name="EmailNotEmail" HorizontalAlignment="Center" Visibility="Collapsed">Email Must Exist.</TextBlock>
+
+            <PasswordBox x:Name="Password" PlaceholderText="Password" Margin="10" Width="400"/>
+            <TextBlock x:Name="PasswordNotLongEnough" HorizontalAlignment="Center" Visibility="Collapsed">Password Must Be At Least 8 Characters Long.</TextBlock>
+                
+            <PasswordBox x:Name="ConfirmPassword" PlaceholderText="Confirm Password" Width="400" Margin="10"/>
+            <TextBlock x:Name="PasswordNotSame" HorizontalAlignment="Center" Visibility="Collapsed">Passwords Must Be The Same.</TextBlock>
+
             <TextBlock HorizontalAlignment="Center" Margin="10" Foreground="Red" Visibility="Collapsed" x:Name="FailedMessage" Text=""/>
             <Button x:Name="Submit" Content="Create User" HorizontalAlignment="Center" Click="Submit_Click" />
         </StackPanel>
