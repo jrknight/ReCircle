@@ -45,13 +45,14 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal" >
                     <TextBlock x:Name="txtTitle" Text="" FontSize="32" Margin="5" HorizontalAlignment="Right" />
-                    <Button x:Name="RequestBookButton" Content="Request Book" Margin="20,0,20,0" Click="Button_Click" Visibility="Collapsed" />
+                    <Button x:Name="RequestBookButton" Content="Request Item" Margin="20,0,20,0" Click="Button_Click" Visibility="Collapsed" />
                 </StackPanel>
-                <HyperlinkButton x:Name="txtAuthor" Content="" FontSize="20" Margin="5" />
-                <TextBlock x:Name="txtGenre" Text="" FontSize="20" Margin="5" />
+                <Image x:Name="image" Width="100" Height="100"/>
                 <TextBlock x:Name="txtDescription" Text="" FontSize="20" Margin="5" TextWrapping="WrapWholeWords"/>
-                <TextBlock x:Name="BooksWritten" Text="Books by this author:" Margin="5,10,5,10" FontSize="26" Visibility="Collapsed"/>
-                <ListView Visibility="Collapsed" x:Name="AuthorBooksList">
+                <TextBlock x:Name="txtOwner" Text="" FontSize="20" Margin="5" TextWrapping="WrapWholeWords"/>
+                <TextBlock x:Name="txtEmail" Text="" FontSize="20" Margin="5" TextWrapping="WrapWholeWords"/>
+                
+                <!--<ListView Visibility="Collapsed" x:Name="AuthorBooksList">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -66,7 +67,7 @@
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                </ListView>
+                </ListView>-->
             </StackPanel>
         </StackPanel>
     </Grid>
