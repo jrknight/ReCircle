@@ -15,14 +15,19 @@ namespace ReCircle.Classes
         [Required]
         public Item Item { get; set; }
         
-        [Required]
+        /*[Required]
         public string UserId { get; set; }
 
         [Required]
         public User User { get; set; }
 
         [Required]
-        public User Owner { get; set; }
+        public User Owner { get; set; }*/
+        public string OwnerEmail { get; set; }
+        public string OwnerNickname { get; set; }
+
+        public string CurrentHolderEmail { get; set; }
+        public string CurrentHolderNickname { get; set; }
 
         public DateTime RequestDate { get; set; }
 

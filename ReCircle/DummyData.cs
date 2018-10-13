@@ -21,12 +21,21 @@ namespace ReCircle
             new Item { Title = "HydroFlask", OwnerEmail="joshk@gmail", OwnerNickname = "Josh", Description = "Like new", CurrentHolderNickname = "Elijah", PhotoUrl = new Uri("https://cdn.shopify.com/s/files/1/0898/5824/products/QUAY_HIGHKEY_BLACK_FADE_FRONT_1024x1024.jpg?v=1537995892") } } };
         }
 
+
+        public int Credits = 2;
         public List<Item> BrowsePage = new List<Item>();
         public List<ItemRequest> RequestedItems = new List<ItemRequest>();
 
+
         public static void RequestItem(Item item)
         {
+            Instance.BrowsePage.Remove(item);
+            Instance.RequestedItems.Add(new ItemRequest { Item = item, CurrentHolderNickname = item.CurrentHolderNickname, OwnerNickname = item.CurrentHolderNickname, RequestDate = DateTime.Now });
+        }
 
+        public static void AddItem(Item item)
+        {
+            Instance.BrowsePage.Add(item);
         }
 
     }
