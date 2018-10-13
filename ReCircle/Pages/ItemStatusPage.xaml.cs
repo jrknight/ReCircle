@@ -134,7 +134,16 @@ namespace ReCircle.Pages
             txtEmail.Text = "Email: " + item.Item.OwnerEmail;
             image.Source = new BitmapImage(item.Item.PhotoUrl);
         }
-        
+
+        private void PopulateItemDetails(Item item) //Populate the details page on the home page
+        {
+            txtTitle.Text = item.Title;
+            txtDescription.Text = "Description: " + item.Description;
+            txtOwner.Text = "Owner: " + item.OwnerNickname;
+            txtEmail.Text = "Email: " + item.OwnerEmail;
+            image.Source = new BitmapImage(item.PhotoUrl);
+        }
+
 
         private void SearchBox_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
         {
@@ -167,7 +176,7 @@ namespace ReCircle.Pages
             {
                 var Item = e.ClickedItem;
 
-                ItemRequest item = (ItemRequest)Item;
+                Item item = (Item)Item;
 
                 Selected = AllItemRecords.Where(i => i.ItemId == item.Id).FirstOrDefault();
 

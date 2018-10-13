@@ -9,6 +9,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -49,70 +50,77 @@ namespace ReCircle.Pages
 
         private async void Submit_Click(object sender, RoutedEventArgs e)
         {
-            if (!Password.Password.Equals(""))
-            {
-                if (!Name.Text.Equals(""))
-                {
-                    if (UserId.Text.Length >= 5)
-                    {
-                        if (/*checks email*/ true)
-                        {
-                            if (Password.Password == ConfirmPassword.Password)
-                            {
-                                var x = new UserModelDto()
-                                {
-                                    Email = Email.Text,
-                                    Name = Name.Text,
-                                    Password = Password.Password,
-                                    UserName = UserId.Text
-                                };
-                                try
-                                {
-                                    var response = await Authentication.NewUser(x);
-                                    if (response.StatusCode == Windows.Web.Http.HttpStatusCode.Created)
-                                    {
-                                        FailedMessage.Visibility = Visibility.Collapsed;
-                                        Frame.Navigate(typeof(MainPage), x);
-                                    }
-                                    else
-                                    {
-                                        FailedMessage.Visibility = Visibility.Visible;
-                                        FailedMessage.Text = $"There was a problem creating the user: {response.ReasonPhrase}";
-                                    }
 
-                                }
-                                catch (Exception ex)
-                                {
-                                    Debug.WriteLine($"An exception occurred on creating a new user: {ex}");
-                                }
-                                return;
-                            }
-                            else
-                            {
-                                PasswordNotSame.Visibility = Visibility.Visible;
-                                BitmapImage bitmap = new BitmapImage();
-                                bitmap.UriSource = new Uri("ms-appx://LibraryApp/Assets/RedX.png");
-                                PasswordMeetsRequirements.Source = bitmap;
-                            }
-                        }
-                        else
-                        {
-                            EmailNotEmail.Visibility = Visibility.Visible;
-                        }
-                    }
-                    else
-                    {
-                        UsernameNotLongEnough.Visibility = Visibility.Visible;
-                    }
-                }
-                else
-                {
-                    NameNotFilled.Visibility = Visibility.Visible;
-                }
+            if (Name.Text.Equals(""))
+            {
+                Name.PlaceholderForeground = new SolidColorBrush(Colors.Red);
+                NameNotFilled.Visibility = Visibility.Visible;
+            }
+            else if (UserId.Text.Length < 5)
+            {
+                NameNotFilled.Visibility = Visibility.Collapsed;
+
+                UserId.PlaceholderForeground = new SolidColorBrush(Colors.Red);
+                UsernameNotLongEnough.Visibility = Visibility.Visible;
+
+            }
+            //Also check for email being real
+            else if (Email.Text.Equals(""))
+            {
+                UsernameNotLongEnough.Visibility = Visibility.Collapsed;
+
+                Email.PlaceholderForeground = new SolidColorBrush(Colors.Red);
+                EmailNotEmail.Visibility = Visibility.Visible;
+            }
+            else if (Password.Password.Length < 8)
+            {
+                EmailNotEmail.Visibility = Visibility.Collapsed;
+
+                Password.Password = "";
+                PasswordNotLongEnough.Visibility = Visibility.Visible;
+            }
+            else if (!(Password.Password == ConfirmPassword.Password))
+            {
+                PasswordNotLongEnough.Visibility = Visibility.Collapsed;
+
+                ConfirmPassword.Password = "";
+                PasswordNotSame.Visibility = Visibility.Visible;
             }
             else
             {
-                PasswordNotLongEnough.Visibility = Visibility.Visible;
+                PasswordNotLongEnough.Visibility = Visibility.Collapsed;
+                EmailNotEmail.Visibility = Visibility.Collapsed;
+                UsernameNotLongEnough.Visibility = Visibility.Collapsed;
+                NameNotFilled.Visibility = Visibility.Collapsed;
+                PasswordNotSame.Visibility = Visibility.Collapsed;
+
+                var x = new UserModelDto()
+                {
+                    Email = Email.Text,
+                    Name = Name.Text,
+                    Password = Password.Password,
+                    UserName = UserId.Text
+                };
+                try
+                {
+                    var response = await Authentication.NewUser(x);
+                    if (response.StatusCode == Windows.Web.Http.HttpStatusCode.Created)
+                    {
+                        FailedMessage.Visibility = Visibility.Collapsed;
+                        Frame.Navigate(typeof(MainPage), x);
+                    }
+                    else
+                    {
+                        FailedMessage.Visibility = Visibility.Visible;
+                        FailedMessage.Text = $"There was a problem creating the user: {response.ReasonPhrase}";
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"An exception occurred on creating a new user: {ex}");
+                }
+                return;
             }
         }
     }
