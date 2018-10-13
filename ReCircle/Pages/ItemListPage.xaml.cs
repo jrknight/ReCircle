@@ -16,7 +16,6 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -30,23 +29,15 @@ namespace ReCircle.Pages
     {
         private List<Item> Items = new List<Item>();
         private Item CurrentlyDisplayed;
-        private List<Item> DummyData = new List<Item>();
 
         public ItemListPage()
         {
             this.InitializeComponent();
-
             Init();
         }
 
         public async void Init()
         {
-            DummyData.Add(new Item { Title = "Item", OwnerNickname = "Josh", Description = "Like new", CurrentHolderNickname = "Elijah", PhotoUrl = new Uri("https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/242ce817-97a3-48fe-9acd-b1bf97930b01/09-posterization-opt.jpg") });
-            DummyData.Add(new Item { Title = "Shoes", OwnerNickname= "Colton", Description = "Used, no use for them now", CurrentHolderNickname = "Colton", PhotoUrl = new Uri("https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/242ce817-97a3-48fe-9acd-b1bf97930b01/09-posterization-opt.jpg") });
-            DummyData.Add(new Item { Title = "Sunglasses", OwnerNickname = "Denielle", Description = "No scratches, polarized", CurrentHolderNickname = "Elijah", PhotoUrl = new Uri("https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/242ce817-97a3-48fe-9acd-b1bf97930b01/09-posterization-opt.jpg") });
-            DummyData.Add(new Item { Title = "Hat", OwnerNickname = "Josh", Description = "Looks fine, works like a hat", CurrentHolderNickname = "Josh", PhotoUrl = new Uri("https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/242ce817-97a3-48fe-9acd-b1bf97930b01/09-posterization-opt.jpg") });
-            DummyData.Add(new Item { Title = "Coffee Mug", OwnerNickname = "Denielle", Description = "Its a coffee mug", CurrentHolderNickname = "Dave! Yognaught", PhotoUrl = new Uri("https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/242ce817-97a3-48fe-9acd-b1bf97930b01/09-posterization-opt.jpg") });
-            DummyData.Add(new Item { Title = "HydroFlask", OwnerNickname = "Josh", Description = "Like new", CurrentHolderNickname = "Elijah", PhotoUrl = new Uri("https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/242ce817-97a3-48fe-9acd-b1bf97930b01/09-posterization-opt.jpg") });
 
             try
             {
@@ -89,7 +80,7 @@ namespace ReCircle.Pages
                 try
                 {
                     //Items = await ItemData.GetItems();
-                    Items = DummyData;
+                    Items = DummyData.Instance.BrowsePage;
                     AvailableBooksList.ItemsSource = Items;
                     AuthorBooksList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                     if (Items.Count > 0)
@@ -164,6 +155,14 @@ namespace ReCircle.Pages
             AuthorBooksList.Visibility = Windows.UI.Xaml.Visibility.Visible;
             BooksWritten.Visibility = Visibility.Visible;
             RequestBookButton.Visibility = Visibility.Collapsed;
+        }
+
+        private async void TxtAuthor_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            HyperlinkButton b = (HyperlinkButton)sender;
+            txtDescription.Text = "";
+            txtAuthor.Content = "";
+            BooksWritten.Visibility = Visibility.Visible;
         }
 
         private async void SearchBox_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)

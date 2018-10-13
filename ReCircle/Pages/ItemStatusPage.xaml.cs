@@ -39,10 +39,10 @@ namespace ReCircle.Pages
             this.InitializeComponent();
             SearchBox.KeyDown += new KeyEventHandler(SearchBox_KeyDown);
             LoadingIndicator.IsActive = true;
-            Init(true);
+            Init();
         }
 
-        public async void Init(bool isStudent)
+        public async void Init()
         {
             if (isStudent)
             {

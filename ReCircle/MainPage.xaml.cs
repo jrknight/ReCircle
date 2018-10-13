@@ -34,7 +34,8 @@ namespace ReCircle
         public MainPage()
         {
             this.InitializeComponent();
-            
+            DummyData.Setup();
+            //TODO: Get rid of all references to DummyData
         }
 
         public MainPage(String s)
