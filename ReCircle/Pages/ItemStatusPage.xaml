@@ -58,14 +58,14 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Text="&#xE8F1;" Height="30" Width="30"/>
+                            <Image Source="{Binding PhotoUrl}" Width="30" Height="30"/>
                             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                                 <TextBlock Text="{Binding Title}"
                                            Margin="20,0,20,0"
                                            FontSize="28"
                                            Foreground="Black"
                                            TextWrapping="Wrap"/>
-                                <TextBlock Text="{Binding Author.Name}"
+                                <TextBlock Text="{Binding Description}"
                                            Margin="30,0,20,8"
                                            FontSize="16"
                                            Foreground="Black"
