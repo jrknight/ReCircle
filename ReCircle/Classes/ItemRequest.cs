@@ -29,6 +29,8 @@ namespace ReCircle.Classes
         public string CurrentHolderEmail { get; set; }
         public string CurrentHolderNickname { get; set; }
 
+        public string RequestMessage { get; set; }
+
         public DateTime RequestDate { get; set; }
 
     }

@@ -10,10 +10,10 @@
     <Grid>
         <ScrollViewer>
             <StackPanel VerticalAlignment="Center" Orientation="Vertical" Width="450">
-                <TextBlock Text="Add a New Item" TextAlignment="Center" FontSize="50" Margin="10"/>
-                <TextBox x:Name="TitleTextBox" PlaceholderText="Title" Width="400" Margin="10"/>
+                <TextBlock Text="Add a New Item" TextAlignment="Center" FontSize="50" Margin="10" />
+                <TextBox x:Name="TitleTextBox" PlaceholderText="Title" Width="400" Margin="10" />
                 <TextBox x:Name="DescriptionTextBox" PlaceholderText="Description" TextWrapping="Wrap" Width="400" Height="200" MaxHeight="200" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Auto" AcceptsReturn="True" />
-                <TextBox x:Name="UrlTextBox" PlaceholderText="URL" Width="400" Margin="10"/>
+                <TextBox x:Name="UrlTextBox" PlaceholderText="Photo URL" Width="400" Margin="10" />
                 <Button x:Name="AddButton" Content="Submit Book" HorizontalAlignment="Center" Margin="10" />
                 <ProgressRing x:Name="LoadingIndicator" IsActive="True" Height="50" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </StackPanel>
