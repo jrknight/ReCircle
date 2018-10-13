@@ -29,7 +29,7 @@ namespace ReCircle.Pages
     {
         private List<Item> Items = new List<Item>();
         private Item CurrentlyDisplayed;
-
+        private List<Item> DummyData = new List<Item>();
 
         public ItemListPage()
         {
@@ -40,6 +40,13 @@ namespace ReCircle.Pages
 
         public async void Init()
         {
+            DummyData.Add(new Item { Title = "Item", OwnerNickname = "Josh", Description = "Like new", CurrentHolderNickname = "Elijah", PhotoUrl = "photos.google.com"});
+            DummyData.Add(new Item { Title = "Shoes", OwnerNickname= "Colton", Description = "Used, no use for them now", CurrentHolderNickname = "Colton", PhotoUrl = "photos.google.com" });
+            DummyData.Add(new Item { Title = "Sunglasses", OwnerNickname = "Denielle", Description = "No scratches, polarized", CurrentHolderNickname = "Elijah", PhotoUrl = "photos.google.com" });
+            DummyData.Add(new Item { Title = "Hat", OwnerNickname = "Josh", Description = "Looks fine, works like a hat", CurrentHolderNickname = "Josh", PhotoUrl = "photos.google.com" });
+            DummyData.Add(new Item { Title = "Coffee Mug", OwnerNickname = "Denielle", Description = "Its a coffee mug", CurrentHolderNickname = "Dave! Yognaught", PhotoUrl = "photos.google.com" });
+            DummyData.Add(new Item { Title = "HydroFlask", OwnerNickname = "Josh", Description = "Like new", CurrentHolderNickname = "Elijah", PhotoUrl = "photos.google.com" });
+
             try
             {
                 LoadingIndicator.IsActive = true;
@@ -80,7 +87,8 @@ namespace ReCircle.Pages
             {
                 try
                 {
-                    Items = await ItemData.GetItems();
+                    //Items = await ItemData.GetItems();
+                    Items = DummyData;
                     AvailableBooksList.ItemsSource = Items;
                     AuthorBooksList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                     if (Items.Count > 0)

@@ -71,7 +71,7 @@ namespace ReCircle
         private async void _btnLogin_Click(object sender, RoutedEventArgs e)
         {
             NavigateToHomePage();
-            if ((bool)StoreUserNameAndPassword.IsChecked)
+            if (false)
             {
                 StoreCredentials(usernameTextBox.Text, passwordTextBox.Password);
             }
