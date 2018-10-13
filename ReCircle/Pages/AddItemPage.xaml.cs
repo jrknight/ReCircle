@@ -36,7 +36,7 @@ namespace ReCircle.Pages
         }
 
 
-        private async void Init()
+        private void Init()
         {
             try
             {
@@ -93,7 +93,7 @@ namespace ReCircle.Pages
                     Description = DescriptionTextBox.Text,
                     PhotoUrl = new Uri(UrlTextBox.Text),
                     OwnerNickname = "Denielle",
-                    OwnerEmail = "denielle's email fucks sake" };
+                    OwnerEmail = "denielle.oliva@gmail.com" };
 
 
                 DummyData.AddItem(newItem);

@@ -78,9 +78,9 @@ namespace ReCircle.Pages
             ContentFrame.Navigate(typeof(ReserveItemPage));
         }
 
-        private void Help_Click(object sender, RoutedEventArgs e)
+        private async void Help_Click(object sender, RoutedEventArgs e)
         {
-            ContentFrame.Navigate(typeof(HelpPage));
+            helpDialog.ShowAsync();
         }
 
         private void PrintReport_Click(object sender, RoutedEventArgs e)
