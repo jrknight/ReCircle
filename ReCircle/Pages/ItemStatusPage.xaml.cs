@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -79,7 +80,6 @@ namespace ReCircle.Pages
                 var content = await ItemData.GetAllItemRequests();
                 List<Item> items = new List<Item>();
                 AllItemRequests = content;
-                StudentCheckedOut.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 foreach (ItemRequest i in AllItemRequests)
                 {
                     items.Add(i.Item);
@@ -110,13 +110,11 @@ namespace ReCircle.Pages
 
         private void AvailableBooksList_ItemClick(object sender, ItemClickEventArgs e)
         {
-            AuthorBooksList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-            CheckInBook.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             try
             {
                 var Item = e.ClickedItem;
 
-                Item item = (Item)Item;
+                ItemRequest item = (ItemRequest)Item;
 
                 Selected = AllItemRequests.Where(i => i.ItemId == item.Id).FirstOrDefault();
 
@@ -128,41 +126,15 @@ namespace ReCircle.Pages
             }
         }
 
-        private async void PopulateItemDetails(Item item) //Populate the details page on the home page
+        private void PopulateItemDetails(ItemRequest item) //Populate the details page on the home page
         {
-            item = await ItemData.GetItem(item.Id);
-
-            txtTitle.Text = item.Title;
-            txtDescription.Text = item.Description;
-
-            AuthorBooksList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-            /*if (!isStudent && Selected.GetType() == typeof(ItemRequest))
-            {
-                //var userName = $"Requested by {AllItemRequests?.Where(b => b.BookId == book.Id).FirstOrDefault().User.Name}";
-                //StudentCheckedOut.Text = userName.ToString();
-            }*/
+            txtTitle.Text = item.Item.Title;
+            txtDescription.Text = "Description: " + item.Item.Description;
+            txtOwner.Text = "Owner: " + item.Item.OwnerNickname;
+            txtEmail.Text = "Email: " + item.Item.OwnerEmail;
+            image.Source = new BitmapImage(item.Item.PhotoUrl);
         }
-
-        /*private void PopulateAuthorDetails(Author author)
-        {
-            txtTitle.Text = author.Name;
-
-            AuthorBooksList.ItemsSource = author.BooksWritten.ToList();
-            AuthorBooksList.Visibility = Windows.UI.Xaml.Visibility.Visible;
-        }*/
-
-        /*private async void TxtAuthor_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            HyperlinkButton b = (HyperlinkButton)sender;
-            var response = await AuthorData.GetBooksWithAuthor(Selected.Book.AuthorId);
-
-            Author a = new Author()
-            {
-                Name = b.Content.ToString(),
-                BooksWritten = response
-            };
-            PopulateAuthorDetails(a);
-        }*/
+        
 
         private void SearchBox_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
         {
@@ -171,7 +143,6 @@ namespace ReCircle.Pages
 
         private void LightUpdateItemsList(string search)
         {
-            AuthorBooksList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
 
             List<Item> itemList = ItemRequests;
             search = search.ToLower();
@@ -192,14 +163,11 @@ namespace ReCircle.Pages
 
         private void CheckedOutBooksList_ItemClick(object sender, ItemClickEventArgs e)
         {
-            AuthorBooksList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-            CheckInBook.Visibility = Windows.UI.Xaml.Visibility.Visible;
-
             try
             {
                 var Item = e.ClickedItem;
 
-                Item item = (Item)Item;
+                ItemRequest item = (ItemRequest)Item;
 
                 Selected = AllItemRecords.Where(i => i.ItemId == item.Id).FirstOrDefault();
 

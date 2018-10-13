@@ -34,18 +34,18 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Text="&#xE8F1;" Height="30" Width="30"/>
+                            <Image Source="{Binding Item.PhotoUrl}" Width="30" Height="30"/>
                             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                                <TextBlock Text="{Binding Title}"
-                                           Margin="20,0,20,0"
-                                           FontSize="28"
-                                           Foreground="Black"
-                                           TextWrapping="Wrap"/>
-                                <TextBlock Text="{Binding Author.Name}"
-                                           Margin="30,0,20,8"
-                                           FontSize="16"
-                                           Foreground="Black"
-                                           TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding Item.Title}"
+                                       Margin="20,0,20,0"
+                                       FontSize="28"
+                                       Foreground="Black"
+                                       TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding Item.Description}"
+                                       Margin="30,0,20,8"
+                                       FontSize="16"
+                                       Foreground="Black"
+                                       TextWrapping="Wrap"/>
                             </StackPanel>
                         </StackPanel>
                     </DataTemplate>
@@ -80,32 +80,15 @@
 
         <StackPanel Grid.Column="1" Orientation="Vertical">
 
-            <!-- remember that this will display book details pertaining to the student or teacher -->
             <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal" >
-                    <TextBlock x:Name="txtTitle" Text="" FontSize="32" Margin="5" HorizontalAlignment="Right" />
-                    <Button x:Name="CheckInBook" Content="Check In Book" Margin="20,0,20,0" Click="CheckInBook_Click" Visibility="Collapsed" />
-                </StackPanel>
-                <TextBlock x:Name="StudentCheckedOut" Text="" FontSize="20" Margin="5" Visibility="Collapsed"/>
-                <HyperlinkButton x:Name="txtAuthor" Content="" FontSize="20" Margin="5" />
-                <TextBlock x:Name="txtGenre" Text="" FontSize="20" Margin="5" />
+                <TextBlock x:Name="txtTitle" Text="" FontSize="32" Margin="5" HorizontalAlignment="Center" />
+
+                <Image x:Name="image" Width="400" Height="400"/>
+
+
+                <TextBlock x:Name="txtOwner" Text="" FontSize="20" Margin="5" TextWrapping="WrapWholeWords"/>
+                <TextBlock x:Name="txtEmail" Text="" FontSize="20" Margin="5" TextWrapping="WrapWholeWords"/>
                 <TextBlock x:Name="txtDescription" Text="" FontSize="20" Margin="5" TextWrapping="WrapWholeWords"/>
-                <ListView Visibility="Collapsed" x:Name="AuthorBooksList">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Text="&#xE8F1;" Height="30" Width="30"/>
-                                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                                    <TextBlock Text="{Binding Title}"
-                                           Margin="20,0,20,0"
-                                           FontSize="28"
-                                           Foreground="Black"
-                                           TextWrapping="Wrap"/>
-                                </StackPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
             </StackPanel>
         </StackPanel>
     </Grid>
