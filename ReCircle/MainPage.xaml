@@ -17,7 +17,6 @@
             <PasswordBox x:Name="passwordTextBox" PasswordRevealMode="Peek" PlaceholderText="Password"  HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24" Width="300" Height="50" Margin="5" Padding="5"/>
             <TextBlock x:Name="LoginFailed" HorizontalAlignment="Center" Visibility="Collapsed" Text="The Username or Password is incorrect" Foreground="Red" FontFamily="Segoe MDL2 Assets"/>
             <Button x:Name="_btnLogin" Content="Login" HorizontalAlignment="Center" FontSize="24" Width="300" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Click="_btnLogin_Click"/>
-            <CheckBox x:Name="StoreUserNameAndPassword" Content="Log me in automatically" HorizontalAlignment="Center" Margin="0,10,0,0" />
             <HyperlinkButton x:Name="_lnkToCreateAccount" Content="Register a New Account" FontFamily="Segoe UI" HorizontalAlignment="Center" Click="_lnkToCreateAccount_Click" />
         </StackPanel>
         <ContentDialog x:Name="updateAvailableDialog"

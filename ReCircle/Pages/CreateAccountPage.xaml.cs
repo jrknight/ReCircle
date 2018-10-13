@@ -28,15 +28,12 @@ namespace ReCircle.Pages
     /// </summary>
     public sealed partial class CreateAccount : Page
     {
-        List<string> userTypes = new List<string>();
 
         public CreateAccount()
         {
             this.InitializeComponent();
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             SystemNavigationManager.GetForCurrentView().BackRequested += CreateAccount_BackRequested;
-            userTypes.Add("Student");
-            userTypes.Add("Librarian");
         }
 
         private void CreateAccount_BackRequested(object sender, BackRequestedEventArgs e)
@@ -46,16 +43,8 @@ namespace ReCircle.Pages
 
         private void UserType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ComboBox b = (ComboBox)sender;
-
-            if (b.SelectedItem.ToString() == userTypes.ElementAt(0))
-            {
-                IsAdminText.Visibility = Visibility.Collapsed;
-            }
-            else if (b.SelectedItem.ToString() == userTypes.ElementAt(1))
-            {
-                IsAdminText.Visibility = Visibility.Visible;
-            }
+            
+            
         }
 
         private async void Submit_Click(object sender, RoutedEventArgs e)

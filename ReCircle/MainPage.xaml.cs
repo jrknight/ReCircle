@@ -70,11 +70,6 @@ namespace ReCircle
 
         private async void _btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)StoreUserNameAndPassword.IsChecked)
-            {
-                StoreCredentials(usernameTextBox.Text, passwordTextBox.Password);
-            }
-
             await TryLogin(usernameTextBox.Text, passwordTextBox.Password);
         }
 

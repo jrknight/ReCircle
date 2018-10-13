@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ReCircle.Classes.http.dto
 {
-    public class BookForCreationDto
+    public class ItemForCreationDto
     {
         public string Title { get; set; }
         public int AuthorId { get; set; }

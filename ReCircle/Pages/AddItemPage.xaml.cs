@@ -77,7 +77,7 @@ namespace ReCircle.Pages
 
             try
             {
-                BookForCreationDto dto = new BookForCreationDto
+                ItemForCreationDto dto = new ItemForCreationDto
                 {
                     Title = TitleTextBox.Text,
                     Summary = SummaryTextBox.Text,

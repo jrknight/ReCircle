@@ -66,7 +66,7 @@ namespace ReCircle
         {
             Configuration.Setup();
 
-            var url = $"{Configuration.Instance.BaseURL}/api/auth/newuser";
+            var url = $"{Configuration.Instance.BaseURL}api/auth/newuser";
 
             var filter = new HttpBaseProtocolFilter();
             filter.IgnorableServerCertificateErrors.Add(ChainValidationResult.Expired);
