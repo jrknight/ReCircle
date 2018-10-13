@@ -78,6 +78,11 @@ namespace ReCircle.Pages
             ContentFrame.Navigate(typeof(ReserveItemPage));
         }
 
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Navigate(typeof(HelpPage));
+        }
+
         private void PrintReport_Click(object sender, RoutedEventArgs e)
         {
 

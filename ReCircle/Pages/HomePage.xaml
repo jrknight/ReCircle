@@ -38,9 +38,9 @@
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <CommandBar Height="50" AllowDrop="True" Grid.Row="0" >
-                        <AppBarButton x:Name="AddBookButton" Icon ="Add" Label="Add A Book" VerticalAlignment="Stretch" Click="AppBarButton_Click"/>
-                        <AppBarButton x:Name="CheckOutBook" Icon="ImportAll" Label="Check Out A Book" Click="CheckOutBook_Click" />
-                        <AppBarButton x:Name="PrintReport" Icon="Print" Label="Print Report" Click="PrintReport_Click" Visibility="Collapsed"/>
+                        <AppBarButton x:Name="AddBookButton" Icon ="Add" VerticalAlignment="Stretch" Click="AppBarButton_Click"/>
+                        <AppBarButton x:Name="CheckOutBook" Icon="ImportAll" Click="CheckOutBook_Click" />
+                        <AppBarButton x:Name="HelpButton" Icon="Help" Click="Help_Click" />
                     </CommandBar>
                     <TextBlock x:Name="_txtPageLabel" Text="Home" VerticalAlignment="Center" Width="200" HorizontalAlignment="Left" Margin="20,0,0,0"/>
                     <Frame x:Name="ContentFrame" Grid.Row="1"/>
