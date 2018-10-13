@@ -43,6 +43,12 @@
                         <AppBarButton x:Name="HelpButton" Icon="Help" Click="Help_Click" />
                     </CommandBar>
                     <TextBlock x:Name="_txtPageLabel" Text="Home" VerticalAlignment="Center" Width="200" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+
+                    <StackPanel Height="Auto" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,250,7">
+                        <Image Height="30" Source="/Assets/Tree.png"/>
+                        <TextBlock  FontSize="25" Text="0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    
                     <Frame x:Name="ContentFrame" Grid.Row="1"/>
                 </Grid>
             </SplitView.Content>
@@ -50,7 +56,7 @@
 
         <ContentDialog x:Name="helpDialog"
            PrimaryButtonText="Back" IsPrimaryButtonEnabled="True"
-                       SecondaryButtonText="Submit" IsSecondaryButtonEnabled="True">
+                       SecondaryButtonText="Submit" IsSecondaryButtonEnabled="True" Visibility="Collapsed">
             <ContentDialog.TitleTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
