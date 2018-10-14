@@ -29,6 +29,7 @@ namespace ReCircle.Pages
         {
             this.InitializeComponent();
             ContentFrame.Navigate(typeof(ItemStatusPage));
+            credit.Text = DummyData.Instance.Credits.ToString();
             /*if (Authentication.Instance.Role.Any(r => r.ToLower().Equals("student")))
             {
                 isStudent = true;
@@ -44,6 +45,7 @@ namespace ReCircle.Pages
                 PrintReport.Visibility = Visibility.Collapsed;
             }*/
         }
+        
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
         {
@@ -80,7 +82,7 @@ namespace ReCircle.Pages
 
         private async void Help_Click(object sender, RoutedEventArgs e)
         {
-            helpDialog.ShowAsync();
+            await helpDialog.ShowAsync();
         }
 
         private void PrintReport_Click(object sender, RoutedEventArgs e)
@@ -88,7 +90,10 @@ namespace ReCircle.Pages
 
         }
 
-
+        private void Frame_Navigated(object sender, NavigationEventArgs e)
+        {
+            credit.Text = DummyData.Instance.Credits.ToString();
+        }
 
         /**
         * Should check permissions and display what is necessary based on this.

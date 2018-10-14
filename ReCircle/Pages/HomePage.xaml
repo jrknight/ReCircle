@@ -9,6 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Frame Navigated="Frame_Navigated"/>
         <SplitView x:Name="_splitView" Opacity="20" DisplayMode="CompactOverlay" IsPaneOpen="False" CompactPaneLength="50" OpenPaneLength="150">
             <SplitView.Pane>
                 <StackPanel Background="Gray">
@@ -46,9 +47,9 @@
 
                     <StackPanel Height="Auto" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,250,7">
                         <Image Height="30" Source="/Assets/Tree.png"/>
-                        <TextBlock  FontSize="25" Text="0" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="credit" FontSize="25" Text="0" VerticalAlignment="Center"/>
                     </StackPanel>
-                    
+
                     <Frame x:Name="ContentFrame" Grid.Row="1"/>
                 </Grid>
             </SplitView.Content>
@@ -56,7 +57,7 @@
 
         <ContentDialog x:Name="helpDialog"
            PrimaryButtonText="Back" IsPrimaryButtonEnabled="True"
-                       SecondaryButtonText="Submit" IsSecondaryButtonEnabled="True" Visibility="Collapsed">
+                       SecondaryButtonText="Submit" IsSecondaryButtonEnabled="True">
             <ContentDialog.TitleTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

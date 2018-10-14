@@ -98,6 +98,7 @@ namespace ReCircle.Pages
 
                 DummyData.AddItem(newItem);
 
+                successDialog.ShowAsync();
                 /*ItemForCreationDto dto = new ItemForCreationDto
                 {
                     Title = TitleTextBox.Text,
@@ -111,6 +112,12 @@ namespace ReCircle.Pages
             {
                 Debug.WriteLine($"An exception occurred creating the data transfer object: {ex}");
             }
-        }       
+        }
+
+        private void successDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            var rootFrame = Window.Current.Content as Frame;
+            rootFrame.Navigate(typeof(HomePage));
+        }
     }
 }

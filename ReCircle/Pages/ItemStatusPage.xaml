@@ -16,7 +16,6 @@
 
 
         <Grid Grid.Column="0" Visibility="Visible">
-
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>

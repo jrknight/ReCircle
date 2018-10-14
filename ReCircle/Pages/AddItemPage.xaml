@@ -25,5 +25,22 @@
                 <ProgressRing x:Name="LoadingIndicator" IsActive="True" Height="50" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </StackPanel>
         </ScrollViewer>
+
+        <ContentDialog x:Name="successDialog"
+           PrimaryButtonText="Okay!" IsPrimaryButtonEnabled="True" PrimaryButtonClick="successDialog_PrimaryButtonClick">
+            <ContentDialog.TitleTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Item Added!"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ContentDialog.TitleTemplate>
+            <StackPanel>
+                <TextBlock TextWrapping="WrapWholeWords">
+                    <Run Text="Your item has been submitted for review."/>
+                    <Run Text="Once an admin reviews your item it will be ready to request."/>
+                </TextBlock>
+            </StackPanel>
+        </ContentDialog>
     </Grid>
 </Page>
