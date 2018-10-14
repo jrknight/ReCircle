@@ -86,7 +86,7 @@ namespace ReCircle.Pages
                     //AuthorBooksList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                     if (Items.Count > 0)
                     {
-                        PopulateItemDetails(Items.ElementAt(0));
+                        //PopulateItemDetails(Items.ElementAt(0));
                     }
                     else
                     {
@@ -146,8 +146,6 @@ namespace ReCircle.Pages
             image.Source = new BitmapImage(item.PhotoUrl);
 
             CurrentlyDisplayed = item;
-            //AuthorBooksList.Visibility = Visibility.Collapsed;
-            //BooksWritten.Visibility = Visibility.Collapsed;
             RequestBookButton.Visibility = Visibility.Visible;
         }
 

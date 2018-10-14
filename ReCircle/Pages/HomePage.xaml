@@ -14,20 +14,20 @@
             <SplitView.Pane>
                 <StackPanel Background="#546a76">
                     <Button x:Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" 
-                    Width="50" Height="50" Background="Transparent" Click="HamburgerButton_Click" Foreground="White"/>
+                    Width="50" Height="50" FontSize="25"  Background="Transparent" Click="HamburgerButton_Click" Foreground="White"/>
                     <StackPanel Orientation="Horizontal">
                         <Button x:Name="btnHome" Foreground="White" FontFamily="Segoe MDL2 Assets" Content="&#xE80F;"
-                    Width="50" Height="50" Background="Transparent" Click="_btnHome_Click"/>
+                    Width="50" Height="50" FontSize="25" Background="Transparent" Click="_btnHome_Click"/>
                         <TextBlock Text="Home" FontSize="18" VerticalAlignment="Center" Foreground="White" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Button x:Name="btnLibrary" FontFamily="Segoe MDL2 Assets" Foreground="White" Content="&#xE7BF;"
-                        Width="50" Height="50" Background="Transparent" Click="_btnBrowse_Click"/>
+                        Width="50" Height="50" FontSize="25" Background="Transparent" Click="_btnBrowse_Click"/>
                         <TextBlock Text="Browse" Foreground="White" FontSize="18" VerticalAlignment="Center" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Button x:Name="btnSettings" Foreground="White" FontFamily="Segoe MDL2 Assets" Content="&#xE713;"
-                        Width="50" Height="50" Background="Transparent" Click="_btnSettings_Click"/>
+                        Width="50" Height="50" FontSize="25" Background="Transparent" Click="_btnSettings_Click"/>
                         <TextBlock Text="Settings" Foreground="White" FontSize="18" VerticalAlignment="Center" />
                     </StackPanel>
                 </StackPanel>
@@ -38,14 +38,14 @@
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <CommandBar Height="50" AllowDrop="True" Grid.Row="0" Background="#88a0a8" >
+                    <CommandBar Height="50" AllowDrop="True" Grid.Row="0" Background="#88a0a8" OverflowButtonVisibility="Collapsed">
                         <AppBarButton x:Name="AddBookButton" Icon ="Add" VerticalAlignment="Stretch" Click="AppBarButton_Click" Foreground="White"/>
-                        <AppBarButton x:Name="CheckOutBook" Icon="ImportAll" Click="CheckOutBook_Click" Foreground="White" />
+                        <AppBarButton x:Name="CheckOutBook" Icon="Contact" Click="CheckOutBook_Click" Foreground="White" />
                         <AppBarButton x:Name="HelpButton" Icon="Help" Click="Help_Click" Foreground="White" />
                     </CommandBar>
-                    <TextBlock x:Name="_txtPageLabel" Text="Home" VerticalAlignment="Center" Width="200" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+                    <TextBlock x:Name="_txtPageLabel" Text="Home" FontSize="40" Foreground="White" VerticalAlignment="Center" Width="200" HorizontalAlignment="Left" Margin="20,0,0,7"/>
 
-                    <StackPanel Height="Auto" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,250,7">
+                    <StackPanel Height="Auto" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,200,7">
                         <Image Height="30" Source="/Assets/Tree.png"/>
                         <TextBlock x:Name="credit" FontSize="25" Text="0" VerticalAlignment="Center"/>
                     </StackPanel>
@@ -69,7 +69,7 @@
                 <TextBlock TextWrapping="WrapWholeWords">
                     <Run Text="Ask an admin a question:"/>
                 </TextBlock>
-                <TextBox PlaceholderText="Question" Height="200" Width="400" Margin="10"/>
+                <TextBox AcceptsReturn="True" TextWrapping="Wrap" PlaceholderText="Question" Height="200" Width="400" Margin="10"/>
             </StackPanel>
         </ContentDialog>
     </Grid>

@@ -35,11 +35,17 @@
                     </StackPanel>
                 </DataTemplate>
             </ContentDialog.TitleTemplate>
-            <StackPanel>
-                <TextBlock TextWrapping="WrapWholeWords">
-                    <Run Text="Your item has been submitted for review."/>
-                    <Run Text="Once an admin reviews your item it will be ready to request."/>
-                </TextBlock>
+            <StackPanel Orientation="Vertical">
+                <StackPanel>
+                    <TextBlock TextWrapping="WrapWholeWords">
+                        <Run Text="Your item has been submitted for review."/>
+                        <Run Text="Once an admin reviews your item it will be ready to request."/>
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontSize="25" Text="+1"/>
+                    <Image Width="30" Height="30" Source="/Assets/Tree.png"/>
+                </StackPanel>
             </StackPanel>
         </ContentDialog>
     </Grid>
