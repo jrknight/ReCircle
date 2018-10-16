@@ -55,8 +55,8 @@ namespace ReCircle
                     LinkToUpdate.Content = new Uri(x.Url);
                     await updateAvailableDialog.ShowAsync();
                 }
-                
 
+                Configuration.Setup();
                 //TODO: Alow for automatic logging in
             }
             catch (Exception ex)
@@ -71,12 +71,6 @@ namespace ReCircle
 
         private async void _btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            NavigateToHomePage();
-            if (false)
-            {
-                StoreCredentials(usernameTextBox.Text, passwordTextBox.Password);
-            }
-
             await TryLogin(usernameTextBox.Text, passwordTextBox.Password);
         }
 

@@ -80,8 +80,8 @@ namespace ReCircle.Pages
             {
                 try
                 {
-                    //Items = await ItemData.GetItems();
-                    Items = DummyData.Instance.BrowsePage;
+                    Items = await ItemData.GetItems();
+                    //Items = DummyData.Instance.BrowsePage;
                     AvailableBooksList.ItemsSource = Items;
                     //AuthorBooksList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                     if (Items.Count > 0)
@@ -201,7 +201,14 @@ namespace ReCircle.Pages
 
             var response = await ItemData.PostNewItemRequest(bookRequest);*/
             DummyData.RequestItem(CurrentlyDisplayed);
+            requestDialog.ShowAsync();
 
+        }
+
+        private void requestDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            var rootFrame = Window.Current.Content as Frame;
+            rootFrame.Navigate(typeof(HomePage));
         }
     }
 }

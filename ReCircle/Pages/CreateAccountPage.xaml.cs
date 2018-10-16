@@ -99,7 +99,8 @@ namespace ReCircle.Pages
                     Email = Email.Text,
                     Name = Name.Text,
                     Password = Password.Password,
-                    UserName = UserId.Text
+                    UserName = UserId.Text,
+                    Credit = 0
                 };
                 try
                 {
