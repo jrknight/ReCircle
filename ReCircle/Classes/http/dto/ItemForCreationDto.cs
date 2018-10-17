@@ -11,7 +11,7 @@ namespace ReCircle.Classes.http.dto
     {
         
         public string Title { get; set; }
-        public string OwnerEmail { get; set; }
+        public string OwnerId { get; set; }
         public string Description { get; set; }
         public string PhotoUrl { get; set; }
 

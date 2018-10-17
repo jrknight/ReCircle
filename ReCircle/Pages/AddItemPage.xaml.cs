@@ -91,16 +91,19 @@ namespace ReCircle.Pages
             try
             {
                
-                await successDialog.ShowAsync();
+                
                 ItemForCreationDto dto = new ItemForCreationDto
                 {
                     Title = TitleTextBox.Text,
                     Description = DescriptionTextBox.Text,
-                    OwnerEmail = Authentication.Instance.CurrentUser.Email,
+                    OwnerId = Authentication.Instance.CurrentUser.Id,
                     PhotoUrl = UrlTextBox.Text
                 };
 
                 var response = await ItemData.PostItem(dto);
+
+                await successDialog.ShowAsync();
+
                 Debug.WriteLine($"Response on creation of book: {response.IsSuccessStatusCode}");
             }
             catch (Exception ex)
