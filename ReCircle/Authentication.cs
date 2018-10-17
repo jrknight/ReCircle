@@ -26,12 +26,12 @@ namespace ReCircle
         {
             Configuration.Setup();
             var url = $"{Configuration.Instance.BaseURL}/api/auth/token";
-            /*var filter = new HttpBaseProtocolFilter();
+            var filter = new HttpBaseProtocolFilter();
             filter.IgnorableServerCertificateErrors.Add(ChainValidationResult.Expired);
             filter.IgnorableServerCertificateErrors.Add(ChainValidationResult.Untrusted);
-            filter.IgnorableServerCertificateErrors.Add(ChainValidationResult.InvalidName);*/
+            filter.IgnorableServerCertificateErrors.Add(ChainValidationResult.InvalidName);
 
-            var client = new HttpClient();
+            var client = new HttpClient(filter);
             client.DefaultRequestHeaders.Accept.Add(new HttpMediaTypeWithQualityHeaderValue("application/json"));
             var request = new HttpRequestMessage(HttpMethod.Post, new Uri(url));
 
