@@ -35,6 +35,7 @@ namespace ReCircle
         {
             this.InitializeComponent();
             DummyData.Setup();
+            ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
             //TODO: Get rid of all references to DummyData
         }
 
