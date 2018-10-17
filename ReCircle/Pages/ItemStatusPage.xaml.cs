@@ -60,8 +60,8 @@ namespace ReCircle.Pages
                     ItemRecords.Add(i.Item);
                 }*/
 
-                BookRequestsList.ItemsSource = DummyData.Instance.RequestedItems;
-                CheckedOutBooksList.ItemsSource = DummyData.Instance.SubmittedItems;
+                //BookRequestsList.ItemsSource = DummyData.Instance.RequestedItems;
+                //CheckedOutBooksList.ItemsSource = DummyData.Instance.SubmittedItems;
             }
             catch (Exception ex)
             {
@@ -130,7 +130,7 @@ namespace ReCircle.Pages
         {
             txtTitle.Text = item.Item.Title;
             txtDescription.Text = "Description: " + item.Item.Description;
-            txtOwner.Text = "Owner: " + item.Item.OwnerNickname;
+            txtOwner.Text = "Owner: " + item.Item.OwnerUsername;
             txtEmail.Text = "Email: " + item.Item.OwnerEmail;
             image.Source = new BitmapImage(item.Item.PhotoUrl);
         }
@@ -139,7 +139,7 @@ namespace ReCircle.Pages
         {
             txtTitle.Text = item.Title;
             txtDescription.Text = "Description: " + item.Description;
-            txtOwner.Text = "Owner: " + item.OwnerNickname;
+            txtOwner.Text = "Owner: " + item.OwnerUsername;
             txtEmail.Text = "Email: " + item.OwnerEmail;
             image.Source = new BitmapImage(item.PhotoUrl);
         }

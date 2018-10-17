@@ -9,11 +9,11 @@ namespace ReCircle.Classes.http.dto
 {
     public class ItemForCreationDto
     {
+        
         public string Title { get; set; }
-        public int AuthorId { get; set; }
-        public string Summary { get; set; }
-        public string ISBN { get; set; }
+        public string OwnerEmail { get; set; }
+        public string Description { get; set; }
+        public string PhotoUrl { get; set; }
 
-        public ArrayList GenreIds = new ArrayList();
     }
 }

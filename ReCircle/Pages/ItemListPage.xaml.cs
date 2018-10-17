@@ -141,7 +141,7 @@ namespace ReCircle.Pages
         {
             txtTitle.Text = item.Title;
             txtDescription.Text = "Description: " + item.Description;
-            txtOwner.Text = "Owner: " + item.OwnerNickname;
+            txtOwner.Text = "Owner: " + item.OwnerUsername;
             txtEmail.Text = "Email: " + item.OwnerEmail;
             image.Source = new BitmapImage(item.PhotoUrl);
 
@@ -200,8 +200,7 @@ namespace ReCircle.Pages
             };
 
             var response = await ItemData.PostNewItemRequest(bookRequest);*/
-            DummyData.RequestItem(CurrentlyDisplayed);
-            requestDialog.ShowAsync();
+            await requestDialog.ShowAsync();
 
         }
 
