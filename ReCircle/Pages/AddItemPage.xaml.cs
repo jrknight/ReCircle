@@ -97,7 +97,7 @@ namespace ReCircle.Pages
                 {
                     Title = TitleTextBox.Text,
                     Description = DescriptionTextBox.Text,
-                    OwnerId = Authentication.Instance.CurrentUser.Id,
+                    OwnerEmail = Authentication.Instance.CurrentUser.Email,
                     PhotoUrl = UrlTextBox.Text
                 };
 

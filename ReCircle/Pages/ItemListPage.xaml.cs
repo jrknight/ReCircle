@@ -208,8 +208,14 @@ namespace ReCircle.Pages
 
         private void requestDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+
+            var messageText = MessageTextBox.Text;
+
+            //TODO: Email setup
+
             var rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(HomePage));
         }
+
     }
 }
