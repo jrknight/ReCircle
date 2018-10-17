@@ -141,6 +141,7 @@ namespace ReCircle.Pages
 
         private void PopulateItemDetails(Item item) //Populate the details page on the home page
         {
+            RequestBookButton.Visibility = Visibility.Visible;
             txtTitle.Text = item.Title;
             txtDescription.Text = "Description: " + item.Description;
             txtOwner.Text = "Owner: " + item.OwnerUsername;
@@ -148,7 +149,7 @@ namespace ReCircle.Pages
             image.Source = new BitmapImage(item.PhotoUrl);
 
             CurrentlyDisplayed = item;
-            RequestBookButton.Visibility = Visibility.Visible;
+            
         }
 
         private void PopulateOwnerDetails(User user)
