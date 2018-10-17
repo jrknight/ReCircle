@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
@@ -53,7 +54,7 @@ namespace ReCircle.Pages
             }
         }
 
-        private void AddButton_Click(object sender, RoutedEventArgs e)
+        private async void AddButton_Click(object sender, RoutedEventArgs e)
         {
 
             string Title = string.Empty;
@@ -89,24 +90,18 @@ namespace ReCircle.Pages
             }
             try
             {
-                Item newItem = new Item { Title = TitleTextBox.Text,
-                    Description = DescriptionTextBox.Text,
-                    PhotoUrl = new Uri(UrlTextBox.Text),
-                    OwnerNickname = "Denielle",
-                    OwnerEmail = "denielle.oliva@gmail.com" };
-
-
-                DummyData.AddItem(newItem);
-
-                successDialog.ShowAsync();
-                /*ItemForCreationDto dto = new ItemForCreationDto
+               
+                await successDialog.ShowAsync();
+                ItemForCreationDto dto = new ItemForCreationDto
                 {
                     Title = TitleTextBox.Text,
-                    Summary = DescriptionTextBox.Text,
+                    Description = DescriptionTextBox.Text,
+                    OwnerEmail = Authentication.Instance.CurrentUser.Email,
+                    PhotoUrl = UrlTextBox.Text
                 };
 
                 var response = await ItemData.PostItem(dto);
-                Debug.WriteLine($"Response on creation of book: {response}");*/
+                Debug.WriteLine($"Response on creation of book: {response.IsSuccessStatusCode}");
             }
             catch (Exception ex)
             {

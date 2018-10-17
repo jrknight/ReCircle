@@ -19,10 +19,10 @@ namespace ReCircle.Classes
         public Uri PhotoUrl { get; set; }
         [Required]
         public string OwnerEmail { get; set; }
-        public string OwnerNickname { get; set; }
+        public string OwnerUsername { get; set; }
         [Required]
         public string CurrentHolderEmail { get; set; }
-        public string CurrentHolderNickname { get; set; }
+        public string CurrentHolderUsername { get; set; }
 
 
         

@@ -35,7 +35,6 @@ namespace ReCircle
         {
             this.InitializeComponent();
             Configuration.Setup();
-            DummyData.Setup();
             //TODO: Get rid of all references to DummyData
         }
 
