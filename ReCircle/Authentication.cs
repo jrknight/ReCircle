@@ -24,6 +24,7 @@ namespace ReCircle
 
         public static async Task<bool> Login(string UserName, string Password)
         {
+            Configuration.Setup();
             var url = $"{Configuration.Instance.BaseURL}/api/auth/token";
             /*var filter = new HttpBaseProtocolFilter();
             filter.IgnorableServerCertificateErrors.Add(ChainValidationResult.Expired);
