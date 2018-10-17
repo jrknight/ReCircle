@@ -90,8 +90,9 @@ namespace ReCircle.Pages
             }
             try
             {
-               
-                
+                Authentication.Instance.CurrentUser.Credit += 1;
+
+                await successDialog.ShowAsync();
                 ItemForCreationDto dto = new ItemForCreationDto
                 {
                     Title = TitleTextBox.Text,

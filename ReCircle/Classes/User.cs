@@ -21,6 +21,6 @@ namespace ReCircle.Classes
         public object LockoutEnd { get; set; }
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
-        public int Credits { get; set; }
+        public int Credit { get; set; }
     }
 }

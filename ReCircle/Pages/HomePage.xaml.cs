@@ -28,6 +28,7 @@ namespace ReCircle.Pages
         public HomePage()
         {
             this.InitializeComponent();
+            credit.Text = Authentication.Instance.CurrentUser.Credit.ToString();
             ContentFrame.Navigate(typeof(ItemStatusPage));
 
             /*if (Authentication.Instance.Role.Any(r => r.ToLower().Equals("student")))
@@ -93,7 +94,7 @@ namespace ReCircle.Pages
         private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
 
-            credit.Text = Authentication.Instance.CurrentUser.Credits.ToString();
+            credit.Text = Authentication.Instance.CurrentUser.Credit.ToString();
         }
 
         /**
