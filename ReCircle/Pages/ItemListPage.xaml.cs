@@ -64,6 +64,7 @@ namespace ReCircle.Pages
 
             try
             {
+                Items = await ItemData.GetItems();
                 await UpdateItems(null);
             }
             catch (Exception ex)
@@ -80,7 +81,7 @@ namespace ReCircle.Pages
             {
                 try
                 {
-                    Items = await ItemData.GetItems();
+                    
                     //Items = DummyData.Instance.BrowsePage;
                     AvailableBooksList.ItemsSource = Items;
                     //AuthorBooksList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
@@ -93,8 +94,9 @@ namespace ReCircle.Pages
                         List<Item> book = new List<Item>();
                         book.Add(new Item()
                         {
-                            Title = "No books here, you should add some!"
+                            Title = "No items here, you should add some!"
                         });
+                        AvailableBooksList.ItemsSource = book;
                     }
                 }
                 catch (Exception ex)

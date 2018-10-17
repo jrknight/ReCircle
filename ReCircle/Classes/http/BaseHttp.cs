@@ -17,7 +17,6 @@ namespace ReCircle.Classes.http
             /*await ($"{Configuration.Instance.BaseURL}/{url}")
                 .WithHeader("Authentication", $"Bearer {Authentication.Instance.Token}")
                 .GetJsonAsync<T>();*/
-
             HttpClient httpClient = new HttpClient();
 
             var headers = httpClient.DefaultRequestHeaders;
