@@ -59,7 +59,7 @@
                         <TextBlock TextWrapping="WrapWholeWords">
                     <Run Text="Message:"/>
                         </TextBlock>
-                        <TextBox AcceptsReturn="True" TextWrapping="Wrap" PlaceholderText="Message" Height="200" Width="400" Margin="10"/>
+                        <TextBox x:Name="MessageTextBox" AcceptsReturn="True" TextWrapping="Wrap" PlaceholderText="Message" Height="200" Width="400" Margin="10"/>
                     </StackPanel>
                 </ContentDialog>
 
