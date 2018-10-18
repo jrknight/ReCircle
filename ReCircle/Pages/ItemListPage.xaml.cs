@@ -55,7 +55,7 @@ namespace ReCircle.Pages
                 LoadingIndicator.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             }
         }
-
+        
         private async Task PopulateListOfItems()
         {
             /// will fetch and return a list of books based on something similar to http://bit.ly/2iTrk2h
@@ -207,15 +207,36 @@ namespace ReCircle.Pages
 
         }
 
-        private void requestDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        private async void requestDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
 
             var messageText = MessageTextBox.Text;
+            var messageSubject = $"{Authentication.Instance.CurrentUser.UserName} is interested in your {CurrentlyDisplayed.Title}";
+
+            await ComposeEmail(CurrentlyDisplayed.OwnerEmail, messageSubject, messageText);
 
             //TODO: Email setup
+            //TODO: set up data transmission based on requests and reservations
+            
 
             var rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(HomePage));
+        }
+
+        private async Task ComposeEmail(string recipient, string subject, string messageBody)
+        {
+            var emailMessage = new Windows.ApplicationModel.Email.EmailMessage();
+            emailMessage.Body = messageBody;
+
+            var email = recipient;
+            if (email != null)
+            {
+                var emailRecipient = new Windows.ApplicationModel.Email.EmailRecipient(email);
+                emailMessage.To.Add(emailRecipient);
+                emailMessage.Subject = subject;
+            }
+
+            await Windows.ApplicationModel.Email.EmailManager.ShowComposeNewEmailAsync(emailMessage);
         }
 
     }
