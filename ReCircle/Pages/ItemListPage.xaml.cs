@@ -212,5 +212,10 @@ namespace ReCircle.Pages
             var rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(typeof(HomePage));
         }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
